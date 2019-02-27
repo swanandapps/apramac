@@ -1,25 +1,73 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+
+import Router from "vue-router";
+import home from './views/home.vue'
+import cart from './views/cart.vue'
+import admin from './views/admin.vue'
+import productdetails from './views/productDetails'
+import checkout from './views/checkout'
+import services from './views/services'
+import store from './views/store.vue'
+import Design from './views/Design.vue'
+import details from './views/details.vue'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+    mode: 'history',
+    routes: [{
+            path: '/store',
+            name: 'store',
+            component: store
+        },
+        {
+            path: '/design',
+            name: 'design',
+            component: Design
+        },
+        {
+            path: '/',
+            name: 'home',
+            component: home
+        },
+        {
+            path: "/cart",
+            name: "cart",
+            component: cart
+        },
+        {
+            path: "/admin",
+            name: "admin",
+            component: admin
+
+        },
+        {
+            path: "/productdetails",
+            name: "productdetails",
+            component: productdetails
+
+        },
+        {
+            path: "/checkout",
+            name: "checkout",
+            component: checkout
+
+        },
+        {
+
+            path: "/services",
+            name: "services",
+            component: services
+        },
+        {
+
+            path: "/details",
+            name: "details",
+            component: details
+        }
+
+
+
+
+    ]
 })
