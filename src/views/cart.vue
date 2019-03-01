@@ -1,11 +1,11 @@
 <template>
 <div>
-
+<div>
 <v-toolbar id="totalorder">
     <v-toolbar-title style="font: 200 130% 'Raleway', Helvetica, sans-serif;">Order Total  : {{total-total*code/100}} ₹ (inclusive of all taxes)</v-toolbar-title>
     <v-spacer></v-spacer>
     <router-link to="/checkout" > <el-button id="checkoutbtn"  size="large" >Proceed</el-button></router-link>
-  </v-toolbar>
+  </v-toolbar></div>
    <h1 id="shop-head" >Shopping Cart </h1>
    <el-row id="promo" style="margin-top:1%">
 <el-col  style="width:50%;margin-left:5%"  :span="12" >
@@ -43,10 +43,10 @@
            <p>{{products.price*products.quantity}} ₹ </p>
            </el-col>
 <el-col id="counter-product" >
-<v-btn @click="subq(index)"  small id="subq" style="font-size:200%;width:2%"><p>-</p></v-btn>
+<v-btn @click="subq(index)"  small id="subq" style="font-size:200%;width:2%"><v-icon>remove</v-icon></v-btn>
 <h4 id="productquan">{{products.quantity}}</h4>
 
-<v-btn  @click="addq(index)" small id="addq" style="font-size:200%;height:30px"><p>+</p></v-btn>
+<v-btn  @click="addq(index)" small id="addq" style="font-size:200%;height:30px"><v-icon>add</v-icon></v-btn>
 </el-col>
 
  <v-icon large  id="removeicon" @click="remove(index)">delete </v-icon>
@@ -154,7 +154,7 @@ export default {
 }
 #productquan {
   margin-top: 2%;
-  margin-left: 20%;
+  margin-left: 17%;
 }
 #row2 {
   display: none;

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import Router from "vue-router";
-import home from './views/home.vue'
+
 import cart from './views/cart.vue'
 import admin from './views/admin.vue'
 import productdetails from './views/productDetails'
@@ -10,6 +10,8 @@ import services from './views/services'
 import store from './views/store.vue'
 import Design from './views/Design.vue'
 import details from './views/details.vue'
+import home from './views/Home.vue'
+
 
 Vue.use(Router)
 
@@ -21,15 +23,16 @@ export default new Router({
             component: store
         },
         {
-            path: '/design',
-            name: 'design',
-            component: Design
-        },
-        {
             path: '/',
             name: 'home',
             component: home
         },
+        {
+            path: '/design',
+            name: 'design',
+            component: Design
+        },
+
         {
             path: "/cart",
             name: "cart",

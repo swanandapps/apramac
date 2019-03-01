@@ -164,7 +164,8 @@ export default {
       users: [],
       filter: [],
       isDisabled: false,
-      dialogVisible: false
+      dialogVisible: false,
+      count:1
     };
   },
 
@@ -250,16 +251,25 @@ export default {
   beforeCreate() {
 
 let tempthis=this
+
     db.collection("products").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
+        
+        console.log(tempthis.count)
         var data = doc.data()
+        console.log(data.id=doc.id)
+         // console.log(tempthis.users[count])
+           //tempthis.filter[tempthis.count].id=doc.id
+           console.log(data.id)
           tempthis.users.push(data);
         tempthis.filter.push(data);
+        tempthis.count++;
 
     });
 
     console.log(tempthis.users)
+    console.log(tempthis.filter)
 });
 
 

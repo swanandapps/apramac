@@ -649,7 +649,7 @@ a {
 #el-row {
   flex: 5;
   overflow: auto;
-  height: 4s30px;
+  height: 430px;
 }
 #about {
   margin-top: 8%;

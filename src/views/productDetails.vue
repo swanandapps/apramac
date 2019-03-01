@@ -41,7 +41,10 @@ export default {
   data: () => ({
     date: ""
   }),
-  
+  components: {
+    vZoom,
+    VueHZoom
+  },
   computed: mapState(["title", "cartproducts", "clickedproduct", "disdate"]),
   methods: {
     addtoclickedproduct: function(index) {

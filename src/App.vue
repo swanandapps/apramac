@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import home from "./views/home";
+
 import { mapState } from "vuex";
 export default {
   components: {
     icon: require("vue-icons"),
-    home
+    
   },
   computed: mapState(["cartproducts"]),
   methods: {
