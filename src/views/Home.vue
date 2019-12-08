@@ -2,126 +2,125 @@
 <div>
 
 
-<div style="width:100%;display:flex;margin-top:5%">
-
-  <div style="width:40%;margin-left:5%">
-   <el-select style="    width: 100%;border: solid;" size="large" v-model="value" placeholder="Select Product Category">
-   <router-link to="/store" > <el-option
->
-    Home Decor
-    </el-option>
-   </router-link>
-     <router-link to="/store" >
-        <el-option
->
-Sculpture
-    </el-option>
-     </router-link>
-     <router-link to="/store" >
-        <el-option
->
-Paintings
-    </el-option>
-     </router-link>
-     <router-link to="/store" >
-        <el-option
-> Pottery
-    </el-option>
-     </router-link>
-  </el-select>
-
-  </div>
- 
-
- <div style="width:40%;margin-left:5%">
-  <el-select style="    width: 100%;border: solid;" size="large" v-model="value" placeholder="About Aprakrta">
-   
-   
-    <el-option
-    >
-    Aprakrta Design
-    </el-option>
-
-    <router-link to="/services" >
-     <el-option
-    >
-    Aprakrta Services
-    </el-option>
-    </router-link>
-  </el-select>
-        </div>
-</div>
-
-
      
- <!--     
- <el-menu  id="el-menu2" class="el-menu-demo" mode="horizontal" >
-<div id="row2" style="width:100%">
-<router-link to="/store" ><el-menu-item id="navhover-exception">Paintings</el-menu-item></router-link>
-<router-link to="/store" > <el-menu-item id="navhover2" >Sculpture</el-menu-item></router-link>
-<router-link to="/store" ><el-menu-item id="navhover2"  >Home Decor</el-menu-item></router-link>
-<router-link to="/store" ><el-menu-item id="navhover2" >Pottery</el-menu-item></router-link>
-<router-link to="/services" ><el-menu-item id="navhover2" >Aprakrta Services</el-menu-item></router-link>
+    
+ <el-menu   id="el-menu2" class="el-menu-demo" mode="horizontal" >
+
+<div id="menu-tabs">
+<router-link  style="text-decoration:none;color:#a52b2b;outline:0" to="/"     >:: <word   style="color:#a52b2b" >Home</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/store"     >:: <word style="color:black"  >Products</word> ::</router-link>
+
+
+
+ 
+ 
+  <router-link style="text-decoration:none;color:#a52b2b;z-index:2000" to="" > ::  <word @click="showtypes()" style="color:black">Art</word> ::</router-link>
+
+<transition name="fade">
+<div v-if="show_art_types" id="art-types">
+<router-link style="text-decoration:none;color:#a52b2b;background: transparent;z-index:2000" to="/created" ><el-button style="color:#a52b2b"> ::  <word style="color:black;background: transparent;">Created</word> ::</el-button></router-link>
+<router-link style="text-decoration:none;color:#a52b2b;background: transparent;z-index:2000" to="/curated" > <el-button style="color:#a52b2b">::  <word style="color:black;background: transparent;">Curated</word> ::</el-button></router-link>
+</div>
+</transition>
+
+<router-link  style="text-decoration:none;color:#a52b2b" to="/services"     >:: <word style="color:black" >Services</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/events"     >:: <word style="color:black" >Events</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/about"     >:: <word  style="color:black">About</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/contact"     >:: <word style="color:black" >Contact</word> ::</router-link>
 </div>
  </el-menu>
-
--->
-
+ 
 
 
+<el-row id="tag-line-div" style="">
 
+<el-row id="tag-line">
+  
+<b>
+ :: Spaces :: Art :: Memories ::
 
-<el-row id="row3" style="    margin-top: 2%;">
-        <p style="text-align:center;font-size:100%;margin-top:2%;">Enhance the Dead Corners of your Home, Accentuate the Ambiance, Make a Statement</p>
+</b>
+
 </el-row>
 
-<div id="home-img" style="margin-top:2%;">
+<el-row id="row3" >
+        <q id="tag-line-quote">Spaces speak to us and create memories. Aprakrta believes in celebrating such beautiful memories every moment by creating bespoke art that accentuates and enlivens spaces that you dwell in</q>
+</el-row>
+
+</el-row>
+
+<div id="home-img" >
            <!--  <img id="homeimg" style="height:500px" src="../assets/Modern-Art.jpg">-->
 
 
-    <el-carousel  :interval="2500"  id="carousel">
-      <el-carousel-item id="carousel-img"  v-for="item in 3" :key="item">
+  <el-carousel  :interval="2500"  id="carousel">
+      <el-carousel-item id="carousel-img"  >
+<img style="width:100%" src="../assets/HomeMobile/Slider01-small.jpg"  >
 
+      </el-carousel-item>
+        <el-carousel-item id="carousel-img"  >
+<img style="width:100%" src="../assets/HomeMobile/Slider02-small.jpg" >
+
+      </el-carousel-item>
+        <el-carousel-item id="carousel-img"  >
+<img style="width:100%" src="../assets/HomeMobile/Slider03-small.jpg" >
 
       </el-carousel-item>
 
 
     </el-carousel>
-    <section v-scroll-reveal.reset>
+<el-carousel  :interval="2500"  id="carousel-desktop">
+      <el-carousel-item id="carousel-img-desktop"  >
+<img src="../assets/ForDesktop/Slider01.jpg" alt="">
+
+      </el-carousel-item>
+        <el-carousel-item id="carousel-img-desktop"  >
+<img src="../assets/ForDesktop/Slider02.jpg" alt="">
+
+      </el-carousel-item>
+        <el-carousel-item id="carousel-img-desktop"  >
+<img src="../assets/ForDesktop/Slider03.jpg" alt="">
+
+      </el-carousel-item>
+
+
+    </el-carousel>
+   
       <div id="home-buttons" >
-        <router-link to="/store"><el-button id="shopnow"  large>Shop Now</el-button></router-link>
-         <el-button v-scroll-to="'#apra-row'"  id="knowmore" large>About Aprakrta</el-button>
+        <router-link to="/store"><el-button id="shopnow" aria-label="shop now"  large>Visit Art Gallery</el-button></router-link>
+         <el-button aria-label="know more" v-scroll-to="'#apra-row'"  id="knowmore" large>About Aprakrta</el-button>
 
 
 </div>
-</section>
+
 </div>
 
-<h1 id="featured"   >Featured Categories</h1>
 
-<el-row style="width:100%;display:flex;margin-top:10%">
+<h1 id="interior-h1">::  <word style="color:black">Featured Categories</word> ::</h1>
 
-<el-col style="margin-top:0%;width: 80%;border: white solid 5px;">
+<el-row style="width:100%;display:flex;margin-top:10%;margin:0px">
 
-      <img id="newhome" src="https://firebasestorage.googleapis.com/v0/b/aprakrta-48342.appspot.com/o/3.jpg?alt=media&token=e909ae2f-298d-4395-991d-036143213305">
+<el-col style="margin-top:0%;width: 80%;">
+
+      <img alt="image" id="newhome" src="../assets/w.jpg" sizes="48vw"  srcset="../assets/HomeMobile/w.jpg 500w,../assets/w.jpg 1500w,  ">
 <router-link to="/store" >
-<v-btn id="newhomebtn"> Indoor Landscape</v-btn></router-link>
+<el-button aria-label="check landscape products" id="newhomebtn"> Interior Styling</el-button></router-link>
 </el-col>
 
 
 <el-row id="newhomerow" style="width:60%">
 
-<el-col   style="margin-top:0%;    border-bottom: white solid 5px;margin-top: 0.8%;    border-right: solid white 5px;">
+<el-col   style="  margin-top: -0.2%;   ">
 
 
-      <img id="newhome2"  src="https://firebasestorage.googleapis.com/v0/b/aprakrta-48342.appspot.com/o/ANK537_8847a.jpg?alt=media&token=d7f79168-c618-40de-97e2-f0c3728ab94a">
-<router-link to="/store" ><v-btn id="newhomebtn2" >  POTTERY</v-btn></router-link>
+      <img alt="image" id="newhome2"  src="../assets/v.jpg" sizes="48vw"  srcset="../assets/HomeMobile/v.jpg 500w,../assets/v.jpg 1500w,  ">
+<router-link to="/store" ><el-button  aria-label="check pottery products" id="newhomebtn2" >Terrariums</el-button></router-link>
 </el-col>
 
-<el-col  style="margin-top:0%">
+<el-col  style="margin-top:-3%">
 
-        <img id="newhome3" src="https://firebasestorage.googleapis.com/v0/b/aprakrta-48342.appspot.com/o/KK18.jpg?alt=media&token=a9bcbeb3-9f0c-4f32-8c22-3a8cbf6aab2b" >
-<router-link  to="/store" ><v-btn id="newhomebtn3"> Paintings</v-btn></router-link>
+        <img alt="image" id="newhome3" src="../assets/x.jpg" sizes="48vw"  srcset="../assets/HomeMobile/x.jpg 500w,../assets/x.jpg 1500w,  " >
+<router-link  to="/store" ><el-button  aria-label="check paintings products" id="newhomebtn3">Home Decor</el-button></router-link>
 
 </el-col>
 
@@ -134,114 +133,104 @@ Paintings
 
 
 
-<!--
-<h1 id="featured"   >Featured Categories</h1>
 
-
-
-<el-row   height="300px">
-  <el-col class=" wow animated fadeIn" data-wow-duration="2s" :span="12"><div class="grid-content" id="two-grid">
-    <img onContextMenu="return false;" id="two-grid-img" src="../assets/_A8A9673.jpg">
-<router-link to="/store"><el-button  id="grid-btn" large>Indoor Landscape Products </el-button></router-link>
-
-    </div></el-col>
-  <el-col class=" wow animated fadeIn" data-wow-duration="2s" :span="12"><div class="grid-content" id="two-grid2">
-    <img onContextMenu="return false;" id="two-grid2-img" src="../assets/2.jpg">
-<router-link to="/store"><el-button  id="grid-btn2" large>Paintings</el-button></router-link>
-    </div>
-
-
-    </el-col>
-
-</el-row>
--->
 <div>
 
-    <h1 id="featured2">Explore Products</h1>
+<h1 id="interior-h1">::  <word style="color:black">Explore Products</word> ::</h1>
 
 </div>
-<el-row   id="el-row" :gutter="20" >
-  <el-col :span="8" style="padding:0px;        height: 452px;" ><div  id="grid-content" class="grid-content bg-purple">
-       <img style="        height: 452px;" id="grid-content" class=" wow animated slideInLeft" data-wow-duration="2s" onContextMenu="return false;"  src="../assets/bottle.jpg"></div></el-col>
-  <el-col  :span="8" style="padding:0px"><div id="grid-content" class="grid-content bg-purple-light">
-       <img id="grid-content" class=" wow animated slideInLeft" data-wow-duration="2s" onContextMenu="return false;" src="../assets/14.jpg"></div></el-col>
-  <el-col :span="8" style="padding:0px"><div id="grid-content" class="grid-content bg-purple">
-       <img id="grid-content" class=" wow animated slideInLeft" data-wow-duration="2s" onContextMenu="return false;" src="../assets/20.jpg"></div></el-col>
-        <el-col :span="8" style="padding:0px;        height: 452px;" ><div id="grid-content" class="grid-content bg-purple">
-       <img id="grid-content" style="        height: 452px;" class=" wow animated slideInRight" data-wow-duration="2s" onContextMenu="return false;"  src="../assets/DS.jpg"></div></el-col>
-  <el-col :span="8" style="padding:0px"><div id="grid-content" class="grid-content bg-purple-light">
-       <img id="grid-content" class=" wow animated slideInRight" data-wow-duration="2s" onContextMenu="return false;" src="../assets/16.jpg"></div></el-col>
-  <el-col :span="8" style="padding:0px;"><div id="grid-content" class="grid-content bg-purple">
-       <img id="grid-content"  onContextMenu="return false;" class=" wow animated slideInRight" data-wow-duration="2s"  src="../assets/19.jpg"></div></el-col>
+<el-row   id="el-row" >
+<el-col  :span="8" ><div id="grid-content" class="grid-content bg-purple-light">
+      <router-link to="/productdetails/I4BwisRiXV86UUxavJ3v">
+      
+
+       <img alt="image" id="grid-content"  onContextMenu="return false;" src="../assets/_A8A9782.jpg" sizes="48vw"  srcset="../assets/HomeMobile/_A8A9782.jpg 500w,../assets/_A8A9782.jpg 1500w,  ">
+       
+       </router-link></div></el-col>
+  <el-col  :span="8" ><div id="grid-content" class="grid-content bg-purple-light">
+
+<img alt="image" id="grid-content"  onContextMenu="return false;" src="../assets/14.jpg" sizes="48vw"  srcset="../assets/HomeMobile/14.jpg 500w,../assets/14.jpg 1500w,  ">
+
+ </div></el-col>
+  <el-col :span="8" ><div id="grid-content" class="grid-content bg-purple">
+    <router-link to="/productdetails/KTYrfsJ7JgL6TP2aePnV">
+    
+    <img alt="image" id="grid-content"  onContextMenu="return false;" src="../assets/spa/20.jpg" sizes="48vw"  srcset="../assets/HomeMobile/20.jpg 500w,../assets/20.jpg 1500w,  " >
+    
+    </router-link> </div></el-col>
+   <el-col  :span="8" ><div id="grid-content" class="grid-content bg-purple-light">
+       
+       <img alt="image" id="grid-content"  onContextMenu="return false;" src="../assets/_A8A9840.jpg" sizes="48vw"  srcset="../assets/HomeMobile/_A8A9840.jpg 500w,../assets/_A8A9840.jpg 1500w,  ">
+       
+       </div></el-col>
+  <el-col :span="8" ><div id="grid-content" class="grid-content bg-purple-light">
+     
+       <img alt="image" id="grid-content"  onContextMenu="return false;" src="../assets/16.jpg" sizes="48vw"  srcset="../assets/HomeMobile/16.jpg 500w,../assets/16.jpg 1500w,  ">
+       
+       </div></el-col>
+  <el-col :span="8" ><div id="grid-content" class="grid-content bg-purple">
+    <router-link to="/productdetails/jykx9UULdkb0YhbmEPHg">
+    
+      <img alt="image" id="grid-content"  onContextMenu="return false;"   src="../assets/19.jpg" sizes="48vw"  srcset="../assets/HomeMobile/19.jpg 500w,../assets/19.jpg 1500w,  ">
+      
+      </router-link> </div></el-col>
 </el-row>
 <div id="about">
 
 <el-row id="apra-row">
-         <h1 id="about-heading" style="color:white;margin-top:8%;">What is Aprakrta</h1>
-        <img onContextMenu="return false;" class="img-test" src="../assets/apraowner.jpeg" id="owner-img"><br>
-        <p id="owner-name">Nivedita Bachhav Gawande</p>
-        <p id="owner-p" >Founder, Aprakrta</p>
+      
+<h1 id="interior-h2"> <word style="color:black">What is Aprakrta</word> </h1>
+      
 
-   <p id="about-para"><q >The comprehension of things within the cognizant world is a resultant of a balance amongst all our senses and emotions. Art happens when this balance attains tranquillity and transcendence. Aprakrta functions at these time-slices of our lives.</q></p>
+   <p id="about-para"><q >Aprakrta is a contemporary online art studio and store where Art is created and curated to suit your personalities and spaces.</q></p>
+
+   <router-link to="/about"><el-button id="knowmore2">Know More</el-button></router-link>
 </el-row>
 
 </div>
 
 
 
-<footer  style="background-color: #1f1e1e;margin-top:19%;color:white" class="page-footer font-small unique-color-dark">
+<footer  style="background-color: #1f1e1e;" >
 
-    <div>
+ 
 
-      <div class="container">
+        
+        <el-row id="social-footer">
+          <el-col span="12">
+            <h6 id="get-connected">Get connected with us on social networks!</h6>
+          </el-col>
+         
+          <el-col span="12" id="div-icons-social">
 
-        <!-- Grid row-->
-        <div class="row py-4 d-flex align-items-center">
-
-          <!-- Grid column -->
-          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-            <h6 class="mb-0" style="color:white">Get connected with us on social networks!</h6>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-6 col-lg-7 text-center text-md-right">
-
-            <!-- Facebook -->
-            <a class="fb-ic" style="margin-right:10%">
-               <a href="http://www.facebook.com/AnArtPopUp/"><el-button id="fb-btn" type="primary"  ><icon style="height:40px;width:40%"  name="facebook"></icon></el-button></a>
+          
+            <a style="margin-right:5%"  >
+               <a href="http://www.facebook.com/AnArtPopUp/"><el-button  aria-label="visit our facebook page" id="fb-btn" type="primary"  ><icon style="height:40px;width:40%"  name="facebook"></icon></el-button></a>
             </a>
-            <!-- Twitter -->
-
-            <!-- Google +-->
-
-            <!--Linkedin -->
-            <a class="li-ic">
-               <a href="https://www.instagram.com/aprakrta/"><el-button id="insta-btn" type="primary"  ><icon style="height:40px;width:70%"  name="instagram"></icon></el-button></a>
+          
+            <a style="margin-right:10%" >
+               <a href="https://www.instagram.com/aprakrta/"><el-button aria-label="visit our instagram page"  id="insta-btn" type="primary"  ><icon style="height:40px;width:70%"  name="instagram"></icon></el-button></a>
             </a>
 
 
-          </div>
-          <!-- Grid column -->
+          </el-col>
+         
+</el-row>
+       
 
-        </div>
-        <!-- Grid row-->
+     
 
-      </div>
-    </div>
+ 
 
-    <!-- Footer Links -->
-    <div  class="container text-center text-md-left mt-5">
+      
+      <el-row id="contact" >
 
-      <!-- Grid row -->
-      <div class="row mt-3" id="contact" >
+      
+        
 
-        <!-- Grid column -->
-         <div >
-
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Contact</h6>
-          <hr class="deep-black accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+      
+        
+         
           <p>
             Raghukul Society </p>
           <p>
@@ -251,26 +240,25 @@ Paintings
           <p>
             077988 79277</p>
              <p>
-             info@aprakrta.com</p>
-         </div>
+            contact@aprakrta.com</p>
+       
 
 
-        <!-- Grid column -->
+ 
 
-      </div>
-      <!-- Grid row -->
+    </el-row>
+   
+    
+    <el-row id="copyright">© 2018 Copyright:
+      Aprakrta.com
+    </el-row>
 
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      Aprakrta
-    </div>
-
-<p style="opacity:0" @dblclick="gotoadmin">Admin</p>
-    <!-- Copyright -->
-<p  style="color:white;text-align:center;font-size:90%;margin:0;height:100px" >Made by <img id="hyperware" src="../assets/logo.jpg"> <a style="color:yellow;text-decoration:none" title="Visit My LinkedIn" href="https://www.linkedin.com/in/swanand-kadam-25137098/"><v-icon >mail</v-icon></a></p>
+<el-row id="made-by">
+  
+HandCrafted with  ❤️ at
+   <a href="https://hyperwarex.com/Ecommerce"> <img  alt="Hyperware" id="hyperware" src="../assets/logo1.jpg"></a>
+  
+  </el-row>
   </footer>
   <!-- Footer -->
 
@@ -278,51 +266,224 @@ Paintings
 
 </template>
 <script>
-import Icon from "vue-awesome/components/Icon";
 
+//import Icon from "vue-awesome/components/Icon";
 export default {
    data() {
       return {
-        options: [{
-          value: 'Option1',
-          label: 'Option1'
-        }, {
-          value: 'Option2',
-          label: 'Option2'
-        }, {
-          value: 'Option3',
-          label: 'Option3'
-        }, {
-          value: 'Option4',
-          label: 'Option4'
-        }, {
-          value: 'Option5',
-          label: 'Option5'
-        }],
-        value: ''
+       
+        value: '',
+        show_art_types:false
+    
+       
       }
     },
-  components: {
-    Icon
+    components: {
+   // Icon
   },
-  methods: {
-    gotoadmin: function() {
-      var pass = prompt("Enter the Pass");
+methods: {
+  showtypes(){
 
-      if (pass == "admin") {
-        this.$router.push("admin");
-      } else {
-        alert("Incorrect Password");
-      }
-    }
+
+if(this.show_art_types==false){
+
+ this.show_art_types=true
+}
+
+else if(this.show_art_types==true){
+
+  this.show_art_types=false
+}
+   
   }
+},
+
+
+ 
+  
 };
 </script>
 
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Cantarell');
+@import url('https://unpkg.com/vue2-animate/dist/vue2-animate.min.css');
+a {
+  outline: 0;
+ 
+  -moz-outline-style: none;
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+#carousel-img-desktop{
+
+
+  height: 500px;
+}
+
+#tag-line{
+
+  margin-top: 4%;
+    text-align: center;
+    font-size: 160%;
+    margin-bottom: 2%
+
+}
+
+#row3{
+ text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    font-size: 129%;
+}
+#carousel-desktop{
+
+  height: 500px;
+  display: block;
+  margin-top: 5%
+}
+#carousel{
+
+  display: none
+}
+
+
+#interior-h1{
+
+color: #a52b2b;
+    font-size: 180%;
+    text-align: center;
+    margin-top: 9%;
+    margin-bottom: 9%;
+    font-family: 'Cantarell', sans-serif;
+}
+#interior-h2{
+
+    color: #a52b2b;
+    font-size: 180%;
+    text-align: center;
+    margin-top: 9%;
+    margin-right: 66%;
+    margin-bottom: 9%;
+    font-family: 'Cantarell', sans-serif;
+}
+ #get-connected{
+
+    color: white;
+    text-align: left;
+    padding-top: 5%;
+    font-size: 118%;
+    margin-top: 2%;
+    margin-left: 9%;
+    font-family: 'Cantarell', sans-serif;
+  }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+
+#art-types{
+         padding-left: 62%;
+    padding-right: 21%;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 125%;
+    left: -28%;
+    z-index: 200;
+     font-family: inherit
+}
+#art-types :nth-child(2){
+
+ margin-left: 7px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 15px 5px;
+margin-top: 4%
+
+}
+#art-types :nth-child(1){
+
+  margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 5px 15px;
+margin-top: -2%
+
+}
+
+
+#knowmore2{
+
+  
+    margin-left: 50%;
+    margin-top: 2%;
+    z-index: 1000;
+    background-color: black;
+    color: white;
+    width: 12%;
+    padding: 10px;
+    border-radius: 5px 15px;
+    font-size: 100%;
+    opacity: 0.7;
+}
+
+#menu-tabs a{
+
+ margin-top: 3.5%;
+    margin-left: 6%;
+    font-size: 136%;
+}
+
+#contact{
+
+  padding-left: 4%;
+    padding-top: 4%;
+    color: white
+}
+#social-footer{
+
+  display: block;
+  color: white
+}
+ #about-heading {
+    font-size: 180%;
+    margin-left: 44%;
+  }
+#made-by{
+
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 4%;
+  color: white
+}
+#el-row .el-col{
+
+  margin-top: 8%
+}
+#copyright{
+
+  text-align: center;
+  padding-top: 5%;
+  font-size: 110%;
+  color: white
+}
+#newmenu{
+  width:100%;display:flex;margin-top:5%
+}
 #hyperware {
-  height: 28px;
+  height: 38px;
   width: 9%;
   margin-top: 0;
   margin-left: 0.5%;
@@ -330,64 +491,71 @@ export default {
 a {
   text-decoration: none;
 }
-#newhome:hover {
-  transform: scale(1.1);
-  transition: ease-in 0.5s;
-  overflow: hidden;
-}
-#newhome2:hover {
-  transform: scale(1.1);
-  transition: ease-in 0.5s;
-}
-#newhome3:hover {
-  transform: scale(1.1);
-  transition: ease-in 0.5s;
-}
+
+ #div-icons-social{
+
+    text-align:right;
+    padding-top: 2%
+    
+  }
+
 #newhomebtn3 {
   left: 5%;
-  top: 76%;
+  top: 55%;
   background-color: black;
   color: white;
-  border: black solid 1px;
-  width: 30%;
-  height: 46px;
+     border-radius: 15px 5px;
+ width: 20%;
+    height: 46px;
+    font-size: 115%;
   position: absolute;
-  font-size: 80%;
+   opacity: 0.8;
+ 
 }
 #newhomebtn2 {
   left: 5%;
   top: 36%;
   background-color: black;
   color: white;
-  border: black solid 1px;
-  width: 30%;
-  height: 46px;
+     border-radius: 15px 5px;
+width: 20%;
+    height: 46px;
+    font-size: 115%;
   position: absolute;
-  font-size: 80%;
+      opacity: 0.8;
+  
 }
 #newhomebtn {
-  left: 5%;
-  top: -15%;
-  background-color: black;
-  color: white;
-  border: black solid 1px;
-  width: 30%;
-  height: 46px;
-  font-size: 80%;
+     left: 5%;
+    top: 87%;
+    background-color: black;
+    color: white;
+      border-radius: 5px 15px;
+    width: 17%;
+    height: 46px;
+    font-size: 135%;
+    /* margin-top: -21%; */
+    position: absolute;
+        opacity: 0.7;
 }
 #newhome {
   width: 100%;
-  height: 665px;
+  height: 865px;
+  object-fit: cover
 }
 
 #newhome2 {
-  height: 336px;
+  height: 432px;
+  width: 100%;
+  object-fit: cover
 }
 
 #newhome3 {
   margin-top: 0%;
-  height: 324px;
-  border-right: solid white 5px;
+  height: 433px;
+  width: 100%;
+  object-fit: cover
+ 
 }
 
 #test:hover {
@@ -427,6 +595,7 @@ a {
 }
 #el-menu {
   background-color: white;
+      border: 0px;
 }
 
 #app {
@@ -467,18 +636,9 @@ a {
   text-align: center;
   padding: 0px;
   margin-right: 8%;
+  
+    color: #a52b2b;
 
-  background-color: hsl(0, 34%, 47%);
-  color: white;
-  -webkit-box-shadow: 0 8px 6px -6px black;
-  -moz-box-shadow: 0 8px 6px -6px black;
-  box-shadow: 0 13px 6px -6px grey;
-  background-image: linear-gradient(
-    to right,
-    #b6423e 0%,
-    #b31217 51%,
-    #e52d27 100%
-  );
 }
 .btn-grad:hover {
   background-position: right center;
@@ -486,24 +646,17 @@ a {
 #navhover2 {
   width: 11%;
   border: #a52b2b 5px;
-  background-color: #a15050;
+    
+    color: #a52b2b;
   font-size: 97%;
   padding: 0px;
   letter-spacing: 0.7px;
-  color: white;
+
   /* padding-right: 7%; */
   text-align: center;
   padding-left: 0px;
   margin-right: 8%;
-  -webkit-box-shadow: 0 8px 6px -6px black;
-  -moz-box-shadow: 0 8px 6px -6px black;
-  box-shadow: 0 13px 6px -6px grey;
-  background-image: linear-gradient(
-    to right,
-    #b6423e 0%,
-    #b31217 51%,
-    #e52d27 100%
-  );
+
 }
 .btn-grad:hover {
   background-position: right center;
@@ -524,14 +677,21 @@ a {
   box-shadow: 0px;
   margin-top: -5%;
   text-align: center;
+      border: 0px;
 }
+
 #el-menu2 {
-  background-color: white;
-  margin-top: 4%;
-  margin-left: 7%;
-  font-size: 110%;
+
+  margin-top: 2%;
+ 
+ text-align: center;
+  font-size: 90%;
   box-shadow: 0px;
   width: 100%;
+      background-color: transparent;
+          border: 0px;
+          font-family: 'Cantarell', sans-serif;
+    
 }
 #mylinkedin {
   margin-top: -10%;
@@ -566,7 +726,8 @@ a {
   opacity: 0;
 }
 #apra-row {
-  height: 800px;
+  height: 700px;
+  color: black
 }
 #lastfoot {
   margin-left: 39.5%;
@@ -593,10 +754,7 @@ a {
   margin-top: 5%;
   background-color: black;
 }
-#copyright {
-  height: 10px;
-  margin-left: 30%;
-}
+
 #subheading {
   margin-top: 2%;
   margin-left: 2%;
@@ -629,12 +787,10 @@ a {
   text-decoration: none;
 }
 #home-buttons {
-  margin-top: 13%;
+  margin-top: 7%;
   margin-left: 30%;
 }
-.el-col {
-  margin-top: 8%;
-}
+
 .line {
   width: 590px;
   height: 47px;
@@ -649,22 +805,27 @@ a {
 #el-row {
   flex: 5;
   overflow: auto;
-  height: 430px;
+    height: 755px;
+    margin-top: -5%
 }
 #about {
   margin-top: 8%;
-  background-image: url("https://image.ibb.co/js2wCf/2eg91ex.png");
+  background-image: url("../assets/desktopcover01.jpg");
   background-size: cover;
 }
 #about-para {
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-top: 8%;
-  color: white;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 145%;
-  font-family: inherit;
+    padding-left: 10%;
+    /* margin-right: 28%; */
+    padding-right: 35%;
+    margin-top: 0%;
+    color: black;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 152%;
+    letter-spacing: 2px;
+    font-family: inherit;
+    word-spacing: 4px;
+    font-family: 'Cantarell', sans-serif;
 }
 #two-grid {
   height: 600px;
@@ -720,6 +881,10 @@ a {
 
   border-radius: 15px;
   font-size: 110%;
+  -moz-outline-style: none;
+	outline:none;
+	outline: 0;
+   
 }
 #knowmore:hover {
   background-color: rgb(167, 62, 44);
@@ -732,22 +897,12 @@ a {
   margin-left: 28%;
   margin-top: -3%;
 }
-h1 {
-  margin-left: 39%;
-  margin-top: 15%;
-  margin-bottom: 5%;
-}
+
 .el-row,
 .el-col {
   overflow: hidden;
 }
-img {
-  height: 400px;
-  width: 100%;
-  margin-top: 10px;
-  word-spacing: 3px;
-  transition: all 0.2s ease-in-out;
-}
+
 
 .grid-content {
   margin-left: 9%;
@@ -765,8 +920,7 @@ img {
   height: 70px;
   border: 1px solid;
   padding: 10px;
-  
-  border-radius: 15px;
+    border-radius: 5px 15px;
 }
 #shopnow:hover {
   background-color: rgb(167, 62, 44);
@@ -801,27 +955,18 @@ img {
   line-height: 150px;
   margin: 0;
 }
-.el-carousel__item:nth-child(3n) {
-  background-image: url("../assets/homepage-promo-carousel-062618.jpg");
-  background-size: cover;
-}
-.el-carousel__item:nth-child(3n + 1) {
-  background-image: url("../assets/NH-SALE-2017-CAROUSEL.jpg");
-  background-size: cover;
-}
-.el-carousel__item:nth-child(3n + 2) {
-  background-image: url("../assets/homepage1a-Memorial-Day-SAVE30-3.jpg");
-  background-size: cover;
-}
+
+
+
 #owner-name {
   text-align: center;
-  color: white;
+  color: black;
   margin-top: 2%;
   font-size: 150%;
 }
 #owner-p {
   text-align: center;
-  color: white;
+  color: black;
   font-size: 120%;
   margin-top: -1%;
 }
@@ -830,14 +975,16 @@ img {
   background-color: #3b5999;
   border: none;
   height: 60px;
-  width: 10%;
+  width: 8%;
+ 
 }
 #insta-btn {
   border-radius: 50%;
   background-color: #c32aa3;
   border: none;
   height: 60px;
-  width: 10%;
+  width: 8%;
+ 
 }
 #map {
   margin-left: 15%;
@@ -846,9 +993,7 @@ img {
 #carousel {
   height: 500px;
 }
-#carousel-img {
-  height: 500px;
-}
+
 #two-grid-img {
   height: 600px;
 }
@@ -863,45 +1008,249 @@ img {
   height: 900px;
   width: 60%;
 }
+
+@media screen and (max-width: 410px) {
+
+
+#carousel-img{
+
+
+  height: 192px;
+}
+}
+
 @media screen and (max-width: 480px) {
+  #interior-h2{
+
+    color: #a52b2b;
+    font-size: 150%;
+    text-align: center;
+  margin-top: 16%;
+    margin-bottom: 16%;
+    margin-right: 66%;
+    
+    font-family: 'Cantarell', sans-serif;
+}
+  #interior-h1{
+
+color: #a52b2b;
+    font-size: 150%;
+    text-align: center;
+    margin-top: 16%;
+    margin-bottom: 16%;
+    font-family: 'Cantarell', sans-serif;
+}
+  #art-types :nth-child(2){
+
+ margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 15px 5px;
+margin-top: 4%
+
+}
+#art-types :nth-child(1){
+
+  margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 5px 15px;
+margin-top: -2%
+
+}
+
+  #knowmore2{
+
+  
+  margin-left: 64%;
+  z-index: 1000;
+  background-color: black;
+  color: white;
+  width: 32%;
+ 
+
+  padding: 10px;
+
+  border-radius: 5px 15px;
+  font-size: 100%;
+  opacity: 0.7;
+}
+
+  #about {
+  margin-top: 8%;
+  background-image: url("../assets/_A8A99222.jpg");
+  background-size: cover;
+}
+#carousel{
+
+  display: block
+}
+#carousel-desktop{
+
+  display: none;
+}
+  
+#art-types{
+       padding-left: 62%;
+    padding-right: 21%;
+    display: grid;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 20%;
+    left: -32%;
+    z-index: 200;
+}
+
+#menu-tabs a{
+
+    margin-top: 3.5%;
+    font-size: 94%;
+    margin-left: 2%;
+}
+
+
+#menu-tabs{
+  display:grid;text-align-last: center;
+    /* left: 5%; */
+    padding-left: -13%;
+          margin-left: -69%;
+    font-size: 92%;
+        margin-top: -5%;
+        font-family: 'Cantarell', sans-serif;
+}
+ .el-col-8{
+
+   width: 50%;
+  }
+  #tag-line-div{
+
+        background-position: center;
+    background-image: url("../assets/HomeMobile/bg-tag2.jpg");
+    background-size: cover;
+    color: black;
+    height: 317px;
+    font-family: 'Cantarell', sans-serif;
+}
+
+  #tag-line{
+
+    text-align: center;
+    font-size: 120%;
+    color: black;
+    padding-top: 0%;
+    font-style: italic;
+    padding-left: 2%;
+    padding-top: 12%;
+    font-family: 'Cantarell', sans-serif;
+}
+
+
+#tag-line-quote{
+       text-align: center;
+    margin-top: 17%;
+    font-family: 'Cantarell', sans-serif;
+    font-style: italic;
+    font-size: 83%;
+    font-weight: 200;
+    letter-spacing: normal;
+     
+}
+  .grid-content {
+    margin-left: 6%;
+    width: 80%;
+    opacity: 1;
+}
+  #copyright{
+        text-align: center;
+    padding-top: 8%;
+    font-size: 15px;
+  }
+#made-by{
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 7%;
+}
+  
+  #social-footer{
+
+  display: grid
+}
+#social-footer .el-col{
+
+  width: 100%
+}
+
+  #get-connected{
+
+    color: white;
+    text-align: -webkit-center;
+    padding-top: 5%;
+    font-size: 15px;
+
+
+
+    font-family: 'Cantarell', sans-serif;
+  }
+
+  #div-icons-social{
+
+    text-align:center;
+    padding-left: 14%;
+  }
   #hyperware {
-    width: 27%;
+        width: 31%;
+    margin-left: 3%;
+
+  }
+  #newmenu{
+
+    width:100%;display:flex;margin-top:32%
   }
   #contact {
-    margin-left: 23%;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Cantarell', sans-serif;
   }
   #apra-row {
     height: 515px;
   }
   #newhomebtn3 {
-    width: 39%;
-    height: 30px;
-    font-size: 49%;
-    top: 73%;
+  
+    height: 40px;
+    font-size: 100%;
+    top: 55%;
+    width: 72%;
+  font-size: 100%;
+    font-family: 'Cantarell', sans-serif;
   }
   #newhomebtn2 {
     top: 35%;
 
-    width: 39%;
-    height: 30px;
-    font-size: 49%;
+   
+    height: 40px;
+    font-size: 100%;
+    width: 68%;
+  font-size: 100%;
+    font-family: 'Cantarell', sans-serif;
   }
-  #newhomebtn {
-    width: 57%;
-    width: 49%;
-    height: 30px;
-    font-size: 49%;
-  }
-  #newhome {
-    height: 358px;
-  }
-  #newhome2 {
-    height: 183px;
-    margin-top: 9%;
-  }
-  #newhome3 {
-    height: 170px;
-  }
+
+
+ #newhome {
+    width: 100%;
+    height: 400px;
+    object-fit: cover
+}
+#newhome2,#newhome3 {
+    height: 200px;
+    width: 100%;
+    object-fit: cover
+}
+#newhomebtn{
+
+  width: 38%;
+  font-size: 100%;
+  top: 85%;
+      opacity: 0.7;
+        font-family: 'Cantarell', sans-serif;
+}
 
   #toolbar {
     position: fixed;
@@ -975,47 +1324,71 @@ img {
   #mapdiv {
     margin-left: 10%;
   }
-  #about-para {
-    font-size: 100%;
-    margin-top: 12%;
-  }
+ #about-para {
+       padding-left: 12%;
+    /* margin-right: 28%; */
+    padding-right: 10%;
+    margin-top: -2%;
+    color: black;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 99%;
+    text-align: center;
+    /* letter-spacing: 2px; */
+    font-family: inherit;
+    word-spacing: 0px;
+  
+}
   #el-menu2 {
-    font-size: 150%;
-    margin-left: 2%;
+        font-size: 129%;
+    width: 100%;
+    margin-left: 0px;
+        margin-top: 6%;
+        height: 340px;
+ background-image: url("../assets/300x360/uedit-forHomePage.jpg");
+ background-size: cover
+   
   }
   #home-buttons {
     margin-top: -1%;
-    margin-left: 13%;
+    margin-left: 8%;
   }
-  #carousel-img {
-    height: 180px;
-  }
+
   #carousel {
-    height: 270px;
+    height: 244px;
     overflow: hidden;
   }
   #grid-content {
-        height: 452px;
+        height: 330px;
+        width: 95%;
+            object-fit: cover;
   }
   #shopnow {
-    width: 40%;
+    width: 43%;
     font-size: 100%;
     height: 50px;
+    background-color: black;
+    color: white
   }
   #knowmore {
-    width: 40%;
+    width: 43%;
     font-size: 100%;
     height: 50px;
+     background-color: black;
+    color: white;
+        border-radius: 15px 5px;
   }
   #featured {
     font-size: 170%;
-    margin-left: 21%;
-    margin-top: 20%;
+    margin-left: 18%;
+    margin-top: 17%;
+    margin-bottom: 15%;
+
   }
   #featured2 {
     font-size: 170%;
     margin-left: 27%;
-    margin-top: 5%;
+    margin-top: 15%;
   }
   .line {
     margin-left: 15%;
@@ -1040,19 +1413,27 @@ img {
   }
   #navhover-exception {
     font-size: 70%;
-    margin-left: -4%;
+   
     margin-top: -4%;
-    margin-bottom: 1%;
+   
     width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+         padding-left: 4%
   }
   #navhover2 {
     font-size: 70%;
-    margin-left: -4%;
-    margin-top: -6%;
+    
+       margin-top: -9%;
     width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+        padding-left: 4%
   }
   #row2 {
-    margin-top: 40%;
+    margin-top: 19%;
     font-size: 110%;
     width: 100%;
     margin-left: 2%;
@@ -1063,13 +1444,15 @@ img {
     right: 45%;
   }
   #row3 {
-    font-size: 90%;
-    margin-top: 10%;
+       font-size: 90%;
+    margin-top: 28%;
+    padding-left: 17%;
+    padding-right: 15%;
+    padding-bottom: 1%;
+    text-align: center;
   }
 
-  #store-col {
-    width: 44%;
-  }
+  
   #products {
     margin-left: 30%;
     left: 3px;
@@ -1077,9 +1460,7 @@ img {
   .grid-content {
     height: 330px;
   }
-  img {
-    height: 10px;
-  }
+ 
   #addtocartbtn {
     display: none;
   }
@@ -1095,22 +1476,130 @@ img {
     display: inline;
     text-align: center;
   }
+  #interior-h2{
+        color: #a52b2b;
+    font-size: 180%;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 1%;
+    /* margin-right: 66%; */
+    margin-bottom: 5%;
+    font-family: 'Cantarell', sans-serif;
+    width: 100%
+  }
+ 
 }
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+   #newhomebtn3 {
+  
+  top: 55%;
+    height: 40px;
+    font-size: 100%;
+    width: 86%;
+    font-size: 99%;
+    font-family: 'Cantarell', sans-serif;
+
+  }
+  #newhomebtn2 {
+  top: 35%;
+    height: 40px;
+    font-size: 100%;
+    width: 76%;
+    font-size: 99%;
+    font-family: 'Cantarell', sans-serif;
+
+  }
+ 
+
+}
+
 @media screen and (min-width: 400px) and (max-width: 600px) {
   #row2 {
     margin-left: 9%;
   }
+  #apraimg{
+
+    width: 30%
+  }
+
+
+
+
+
+
+
 }
 @media screen and (min-width: 481px) and (max-width: 720px) {
   #apraimg {
-    width: 90%;
+    width: 50%;
   }
+  #menu-tabs a{
+
+    margin-top: 3.5%;
+    font-size: 94%;
+    margin-left: 2%;
+}
+
+
+#menu-tabs{
+  display:grid;text-align-last: center;
+    /* left: 5%; */
+    padding-left: -13%;
+          margin-left: -69%;
+    font-size: 92%;
+        margin-top: -5%;
+}
+
+#navhover-exception {
+    font-size: 70%;
+   
+    margin-top: -4%;
+   
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+         padding-left: 4%
+  }
+  #navhover2 {
+    font-size: 70%;
+    
+       margin-top: -9%;
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+        padding-left: 4%
+  }
+  #newhome {
+    width: 100%;
+    height: 600px;
+    object-fit: cover
+}
+#newhome2,#newhome3 {
+    height: 300px;
+    width: 100%;
+    object-fit: cover
+}
+#newhomebtn{
+
+  width: 46%
+}
+#apra-row {
+    height: 866px;
+    color: black;
+}
+#newhomebtn2,#newhomebtn3{
+
+
+  width: 70%
+}
+
   #row2 {
     margin-left: -30%;
   }
-  #navhover2 {
-    margin-left: 2%;
-  }
+  
   #title {
     width: 30%;
   }
@@ -1149,11 +1638,11 @@ img {
     margin-left: 43%;
   }
   #fb-btn {
-    width: 13%;
+    width: 26%;
     margin-top: 5%;
   }
   #insta-btn {
-    width: 13%;
+    width: 26%;
   }
   .mapouter {
     margin-left: 10%;
@@ -1162,6 +1651,7 @@ img {
   }
   #contact {
     margin-left: -1%;
+    font-family: 'Cantarell', sans-serif;
   }
   #owner-p {
     font-size: 75%;
@@ -1170,26 +1660,28 @@ img {
     margin-left: 10%;
   }
   #about-para {
-    font-size: 100%;
+    font-size: 140%;
     margin-top: 12%;
   }
   #el-menu2 {
     font-size: 150%;
-    margin-left: 2%;
+    margin-left: 0%;
+ background-image: url("../assets/300x360/uedit-forHomePage.jpg");
+  background-size: cover
+    
   }
   #home-buttons {
     margin-top: -1%;
     margin-left: 13%;
   }
-  #carousel-img {
-    height: 180px;
-  }
+
   #carousel {
     height: 270px;
     overflow: hidden;
   }
   #grid-content {
     height: 230px;
+        object-fit: cover;
   }
   #shopnow {
     width: 40%;
@@ -1202,8 +1694,10 @@ img {
     height: 50px;
   }
   #featured {
-    font-size: 170%;
-    margin-top: 20%;
+  font-size: 170%;
+    margin-left: 28%;
+    margin-top: 22%;
+    margin-bottom: 15%;
   }
   #featured2 {
     font-size: 170%;
@@ -1231,16 +1725,7 @@ img {
   #productimages {
     height: 20px;
   }
-  #navhover-exception {
-    font-size: 70%;
-    margin-left: -6%;
-    margin-top: -6%;
-  }
-  #navhover2 {
-    font-size: 70%;
-    margin-left: 1%;
-    margin-top: -6%;
-  }
+ 
   #row2 {
     margin-top: 10%;
     font-size: 130%;
@@ -1255,9 +1740,7 @@ img {
   #row3 {
     font-size: 90%;
   }
-  #store-col {
-    width: 44%;
-  }
+ 
   #products {
     margin-left: 30%;
     left: 3px;
@@ -1265,9 +1748,7 @@ img {
   .grid-content {
     height: 330px;
   }
-  img {
-    height: 10px;
-  }
+ 
   #addtocartbtn {
     display: none;
   }
@@ -1286,8 +1767,95 @@ img {
 }
 @media screen and (min-width: 721px) and (max-width: 1024px) {
   #apraimg {
-    width: 90%;
+    width: 30%;
   }
+  
+  #menu-tabs a{
+
+      margin-top: 3.5%;
+    font-size: 114%;
+    margin-left: 6%;
+}
+#el-menu2 {
+    font-size: 150%;
+    margin-left: 0%;
+ background-image: url("../assets/300x360/uedit-forHomePage.jpg");
+  background-size: cover
+    
+  }
+    #art-types {
+    padding-left: 62%;
+    padding-right: 21%;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 32%;
+    left: -33%;
+    z-index: 200;
+}
+
+#menu-tabs{
+  display:grid;text-align-last: center;
+    /* left: 5%; */
+    padding-left: -13%;
+          margin-left: -76%;
+    font-size: 100%;
+        margin-top: -5%;
+}
+
+#navhover-exception {
+    font-size: 70%;
+   
+    margin-top: -4%;
+   
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+         padding-left: 4%
+  }
+  #navhover2 {
+    font-size: 70%;
+    
+       margin-top: -9%;
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+        padding-left: 4%
+  }
+#category-btn-pc{
+
+  width: 110%
+}
+
+
+
+
+  #newhomebtn{
+
+    width: 32%
+  }
+
+  #newhomebtn2, #newhomebtn3{
+
+    left: 8%;
+  
+    width: 49%;
+   
+    font-size: 123%;
+  
+  }
+  #featured{
+        margin-bottom: 12%;
+    margin-left: 35%;
+  }
+  #apraimg{
+    width: 38%;
+    width: 38%;
+    margin-top: 2%;
+    /* padding-left: 4%; */
+}
+
   #row2 {
     margin-left: -30%;
   }
@@ -1346,6 +1914,7 @@ img {
   }
   #contact {
     margin-left: -1%;
+    font-family: 'Cantarell', sans-serif;
   }
   #owner-p {
     font-size: 95%;
@@ -1354,27 +1923,28 @@ img {
     margin-left: 10%;
   }
   #about-para {
-    font-size: 100%;
+      font-size: 163%;
     margin-top: 12%;
   }
-  #el-menu2 {
+#el-menu2 {
     font-size: 150%;
-    margin-left: -6%;
-    margin-top: 2%;
+    margin-left: 0%;
+ background-image: url("../assets/300x360/uedit-forHomePage.jpg");
+  background-size: cover
+    
   }
   #home-buttons {
     margin-top: -1%;
     margin-left: 13%;
   }
-  #carousel-img {
-    height: 370px;
-  }
+  
   #carousel {
     height: 370px;
     overflow: hidden;
   }
   #grid-content {
     height: 400px;
+        object-fit: cover;
   }
   #shopnow {
     width: 40%;
@@ -1421,7 +1991,7 @@ img {
     font-size: 67%;
     width: 15%;
     border: #a52b2b 5px;
-    background-color: #a15050;
+    
     padding: 0px;
     letter-spacing: 0.7px;
     color: white; /* padding-right: 7%; */
@@ -1432,7 +2002,7 @@ img {
   #navhover2 {
     width: 17%;
     border: #a52b2b 5px;
-    background-color: #a15050;
+    
     font-size: 67%;
     padding: 0px;
     letter-spacing: 0.7px;
@@ -1458,9 +2028,7 @@ img {
     margin-top: 5%;
   }
 
-  #store-col {
-    width: 44%;
-  }
+  
   #products {
     margin-left: 30%;
     left: 3px;
@@ -1484,6 +2052,22 @@ img {
     display: inline;
     text-align: center;
   }
+
+  /*@media only screen and (min-width: 870px) and (max-width: 2005px)  
+{
+
+#el-menu2{
+
+  width: 100%
+}
+#menu-tabs a{
+ margin-top: 3.5%;
+    padding-left: 3%;
+    font-size: 100%;
+}
+
+}
+}*/
 }
 </style>
 

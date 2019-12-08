@@ -5,24 +5,35 @@
 
 
 
-  <el-col onContextMenu="return false;" id="img-col" :span="12"><div  onContextMenu="return false;" id="product-img-zoom" class="grid-content bg-purple pic-box"> <vue-h-zoom :image="clickedproduct[clickedproduct.length-1].image"
-  :image-full="clickedproduct[clickedproduct.length-1].image"
-  :zoom-level="2" :zoom-window-x="600" :zoom-window-size="1"  onContextMenu="return false;"  :width="452" :height="681"></vue-h-zoom></div></el-col>
+  <el-col onContextMenu="return false;" id="img-col" :span="12"><div  onContextMenu="return false;" id="product-img-zoom" class="grid-content bg-purple pic-box"> <vue-h-zoom :image="detail_product.image"
+  :image-full="detail_product.image"
+  :zoom-level="2" :zoom-window-x="600" :zoom-window-size="1"  onContextMenu="return false;"   :width="502" :height="500"></vue-h-zoom></div></el-col>
+
+        
+
+ <div onContextMenu="return false;" id="mobile-img-col" >
+
+
+<img :alt="detail_product.name" id="mobile-detail-img" :src="detail_product.image" >
+
+ </div>
+
+
   <el-col :span="12"><div id="productdata" class="grid-content bg-purple-light">
-          <p id="productname" >{{clickedproduct[clickedproduct.length-1].name}}</p>
-           <p id="productprice" >{{clickedproduct[clickedproduct.length-1].price}} ₹ </p>
-           <span><v-icon>local_shipping</v-icon><span>Order today and your item will be dispatched by</span><span id="dispatchdate">{{date}}</span> </span><br>
-           <v-btn   @click="addtoclickedproduct(index)" id="addtocartbtn">Add to Cart</v-btn>
-           <router-link style="text-decoration: none;" to="/store"><v-btn id="addtocartbtn">Back to Store</v-btn></router-link>
+          <p id="productname" >{{detail_product.name}}</p>
+           <p id="productprice" >{{detail_product.price}} ₹ </p>
+           <span><img class="shipping"  src="../assets//baseline_local_shipping_black_24dp.png" alt="shipping" srcset=""><span style="font-size:100%">Order today and your item will be delivered in next</span><span id="dispatchdate">{{date}} days</span> </span><br>
+           <el-button aria-label="Add to cart"   @click="addtoclickedproduct(index)" id="addtocartbtn">Add to Cart</el-button>
+           <router-link style="text-decoration: none;" to="/store"><el-button aria-label="go back to store" id="addtocartbtn">Back to Store</el-button></router-link>
            <div class="line"></div>
            <h3 id="desc" >Product Description</h3>
            <div >
-<p id="productdesc" >{{clickedproduct[clickedproduct.length-1].description}}  </p></div></div></el-col>
+<p id="productdesc" >{{detail_product.description}}  </p></div></div></el-col>
 </el-row>
 
 <div class="icon-b">
          <el-tooltip class="item" effect="dark" content="GO to Cart" placement="right-end">
-<router-link  to="/cart"> <v-icon class="facebook" style="color:white" >shopping_cart</v-icon><div class="count" style="color:white">{{cartproducts.length}}</div></router-link></el-tooltip>
+<router-link style="text-decoration:none"  to="/cart"> <img class="facebook " src="../assets/baseline_shopping_cart_white_24dp.png" ><div class="count" style="color:white">{{cartproducts.length}}</div></router-link></el-tooltip>
 </div>
 </div>
 
@@ -30,28 +41,42 @@
 </template>
 <script>
 import vZoom from "vue-zoom";
-import PicZoom from "vuejs-picture-zoom";
+//import PicZoom from "vuejs-picture-zoom";
 import VueHZoom from "vue-h-zoom";
-
+import { Notification} from 'element-ui'
 import { mapState } from "vuex";
-import db from '../components/firebaseinit.js'
-import { storage, functions } from 'firebase';
-import firebase from 'firebase';
+import db from '../components/firebase-firestore.js'
+//import { storage, functions } from 'firebase';
+//import firebase from 'firebase';
 export default {
   data: () => ({
-    date: ""
+    date: "",
+    detail_product:''
   }),
   components: {
     vZoom,
-    VueHZoom
+    VueHZoom,
+    
   },
   computed: mapState(["title", "cartproducts", "clickedproduct", "disdate"]),
   methods: {
     addtoclickedproduct: function(index) {
+      
+let compare_array=[]
+
+if(this.clickedproduct[0]==undefined){
+
+  compare_array=this.detail_product
+}
+else{
+
+  compare_array=this.clickedproduct[0]
+}
+console.log(this.clickedproduct)
       let flag = 1;
       for (let i = 0; i < this.cartproducts.length; i++) {
-        if (this.clickedproduct[0].id == this.cartproducts[i].id) {
-          this.$notify.warning({
+        if (compare_array.id == this.cartproducts[i].id) {
+          Notification.warning({
             title: "Already Added to Cart",
             message: "Visit Cart to Checkout",
             offset: 40,
@@ -62,11 +87,11 @@ export default {
       }
 
       if (flag == 1) {
-        this.cartproducts.push(this.clickedproduct[0]);
+        this.cartproducts.push(compare_array);
 
-        console.log(this.cartproducts);
+        //console.log(this.cartproducts);
 
-        this.$notify.success({
+        Notification.success({
           title: "Added to Cart",
           message: "Visit Cart to Checkout",
           offset: 40,
@@ -76,8 +101,32 @@ export default {
     }
   },
 
-  created() {
+  beforeCreate() {
    let tempthis=this
+
+   //console.log(this.$route.params.id)
+
+db.collection("products").doc(tempthis.$route.params.id).get().then(function(doc) {
+    if (doc.exists) {
+        //console.log("Document data:", doc.data());
+   
+        tempthis.detail_product=doc.data()
+         tempthis.detail_product.id=doc.id
+    
+    } else {
+        // doc.data() will be undefined in this case
+        //console.log("No such document!");
+    }
+}).catch(function(error) {
+    //console.log("Error getting document:", error);
+});
+
+
+
+
+
+
+
     db.collection("dispatchdate").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
@@ -90,6 +139,11 @@ export default {
 };
 </script>
 <style scoped>
+#mobile-img-col{
+
+  display: none
+}
+
 .thumbnail-area {
   width: 412px;
 }
@@ -108,27 +162,36 @@ export default {
   color: black;
   font-size: 110%;
   z-index: 2000;
-  margin-top: -105%;
-  margin-left: 80%;
+margin-top: -157%;
+    margin-left: 78%;
+    margin-left: 74%;
 }
 
-.icon-b a {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  transition: all 0.3s ease;
-  color: white;
-  background-color: #a52b2b;
-  font-size: 120%;
-  border-radius: 50%;
-  height: 80px;
-  width: 120%;
+.shipping{
+  width: 9%;
+
 }
+.icon-b a {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #a52b2b;
+    font-size: 120%;
+    border-radius: 50%;
+     height: 35px;
+    width: 41%;
+}
+
 
 .facebook {
   color: black;
   font-size: 200%;
   margin-top: 18%;
+        width: 78%;
+height: 30px;
+
 }
 a {
   color: black;
@@ -142,6 +205,12 @@ a {
 }
 #addtocartbtn {
   margin-top: 5%;
+      width: 30%;
+    /* padding-left: 4%; */
+    margin-left: 2%;
+ -moz-outline-style: none;
+	outline:none;
+	outline: 0;
 }
 
 #addtocartbtn:hover {
@@ -181,6 +250,7 @@ span {
   margin-top: 9%;
   margin-bottom: 3%;
   text-align: center;
+      cursor: pointer;
 }
 #productdata {
   margin-left: -8%;
@@ -203,6 +273,17 @@ span {
 
 @media screen and (max-width: 480px) {
 
+
+  #mobile-img-col{
+
+
+    display: block;
+    width: 155%
+  }
+  #mobile-detail-img{
+    width: 100%
+  }
+
  #app2{
 
    width: 65%
@@ -218,13 +299,14 @@ span {
   #img-col {
     width: 120%;
     pointer-events: none;
+    display: none
   }
 
   .img-zoom-container[data-v-cd0bf226] {
     overflow: visible;
   }
   #productdata {
-    margin-top: -28%;
+    margin-top: -60%;
     /* position: relative; */
         margin-left: 17%;
     width: 125%;
@@ -235,11 +317,12 @@ span {
   }
   .icon-b {
     position: fixed;
-    top: 80%;
+    top: 76%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    right: 18%;
+    right: 10%;
     margin-top: 15%;
+
   }
 
   #productname {
@@ -254,10 +337,16 @@ span {
     display: none;
   }
   #addtocartbtn {
-    width: 15%;
-    font-size: 60%;
+       width: 42%;
+    font-size: 68%;
     margin-left: 2%;
     margin-top: 8%;
+    background-color: black;
+    color: white;
+     -moz-outline-style: none;
+	outline:none;
+	outline: 0;
+
   }
   #cartproducts {
     display: grid;
@@ -288,6 +377,7 @@ span {
     width: 70%;
     border: solid 1px rgb(88, 64, 64);
     margin-top: 80%;
+        cursor: pointer;
   }
 }
 @media screen and (min-width: 481px) and (max-width: 720px) {

@@ -1,16 +1,33 @@
 import Vue from 'vue'
-
 import Router from "vue-router";
-
-import cart from './views/cart.vue'
-import admin from './views/admin.vue'
-import productdetails from './views/productDetails'
-import checkout from './views/checkout'
-import services from './views/services'
-import store from './views/store.vue'
-import Design from './views/Design.vue'
-import details from './views/details.vue'
-import home from './views/Home.vue'
+const Store = () =>
+    import ('./views/store.vue')
+const Home = () =>
+    import ('./views/Home.vue')
+const Cart = () =>
+    import ('./views/cart.vue')
+const Contact = () =>
+    import ('./views/contact.vue')
+const Created = () =>
+    import ('./views/created.vue')
+const Curated = () =>
+    import ('./views/curated.vue')
+const Events = () =>
+    import ('./views/events.vue')
+const About = () =>
+    import ('./views/about.vue')
+const Admin = () =>
+    import ('./views/admin.vue')
+const Productdetails = () =>
+    import ('./views/productDetails.vue')
+const Checkout = () =>
+    import ('./views/checkout.vue')
+const Login = () =>
+    import ('./views/login.vue')
+const Services = () =>
+    import ('./views/services.vue')
+const Ordersuccess = () =>
+    import ('./views/ordersuccess.vue')
 
 
 Vue.use(Router)
@@ -20,53 +37,85 @@ export default new Router({
     routes: [{
             path: '/store',
             name: 'store',
-            component: store
+            component: Store
         },
         {
             path: '/',
             name: 'home',
-            component: home
+            component: Home
         },
-        {
-            path: '/design',
-            name: 'design',
-            component: Design
-        },
+
 
         {
             path: "/cart",
             name: "cart",
-            component: cart
+            component: Cart
+        },
+        {
+            path: "/contact",
+            name: "contact",
+            component: Contact
+        },
+        {
+            path: "/created",
+            name: "created",
+            component: Created
+        },
+        {
+            path: "/curated",
+            name: "curated",
+            component: Curated
+        },
+        {
+            path: "/events",
+            name: "events",
+            component: Events
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About
         },
         {
             path: "/admin",
             name: "admin",
-            component: admin
+
+            component: Admin
+
 
         },
         {
-            path: "/productdetails",
+            path: "/productdetails/:id",
             name: "productdetails",
-            component: productdetails
+            component: Productdetails
 
         },
         {
             path: "/checkout",
             name: "checkout",
-            component: checkout
+            component: Checkout
+
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
 
         },
         {
 
             path: "/services",
             name: "services",
-            component: services
+            component: Services
         },
+
         {
 
-            path: "/details",
-            name: "details",
-            component: details
+            path: '/ordersuccess',
+            name: 'ordersuccess',
+            component: Ordersuccess
+
+
         }
 
 

@@ -2,41 +2,58 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './registerServiceWorker'
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+//import VueApexCharts from 'vue-apexcharts'
+//import { MdMenu, MdButton, MdIcon } from 'vue-material/dist/components';
+//import 'vue-material/dist/vue-material.min.css';
 
+//Vue.use(MdMenu)
+//Vue.use(MdButton)
+//Vue.use(MdIcon)
+//import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
-import webp from 'vue2-webp'
+import VueCarousel from '@chenfengyuan/vue-carousel';
 
-import VueMaterial from "vue-material";
-import "vue-material/dist/vue-material.min.css";
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+Vue.use(VueCarousel);
 
-Vue.use(VueMaterial);
-
-import Vuetify from 'vuetify'
-Vue.use(Vuetify)
-import 'vuetify/dist/vuetify.min.css'
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-import axios from 'axios'
+import {
+    Submenu,
+    MenuItem,
+    TableColumn,
+    RadioGroup,
+    Button,
+    Form,
+    Table,
+    Row,
+    Radio,
+    Col,
+    Menu,
+    CarouselItem,
+    Carousel,
+    Tooltip,
+    Input,
+    FormItem
+} from 'element-ui'
 
 import VueHZoom from 'vue-h-zoom';
 import VueSweetalert2 from 'vue-sweetalert2';
-import 'vue-awesome/icons'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-awesome/icons/home'
+import 'vue-awesome/icons/filter'
+import 'vue-awesome/icons/sort'
+import 'vue-awesome/icons/minus'
+import 'vue-awesome/icons/plus'
+import 'vue-awesome/icons/trash'
+
 import vuescroll from 'vuescroll';
 import 'vuescroll/dist/vuescroll.css';
-import VueSticky from 'vue-sticky'
+
 Vue.use(vuescroll);
-Vue.use(VueSticky)
+
+
+
+//Vue.component('apexchart', VueApexCharts)
 import VueScrollReveal from 'vue-scroll-reveal';
-Vue.use(webp)
+//import './plugins/element.js'
+
 Vue.use(VueScrollReveal);
 Vue.use(VueHZoom)
     // You can also pass in default options
@@ -62,16 +79,33 @@ Vue.use(VueScrollTo, {
     y: true
 })
 
-Vue.use(ElementUI)
-Vue.use(BootstrapVue);
-Vue.use(axios)
+Vue.use(Button)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Form)
+Vue.use(Table)
+Vue.use(Menu)
+Vue.use(CarouselItem)
+Vue.use(Carousel)
+Vue.use(Tooltip)
+Vue.use(Input)
+Vue.use(TableColumn)
+    //Vue.use(Notification)
+    //Vue.use(Message)
+    //Vue.use(MessageBox)
+Vue.use(FormItem)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+
 Vue.config.productionTip = false
 
 
-Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App),
+    mounted: () => document.dispatchEvent(new Event("x-app-rendered")),
 }).$mount('#app')

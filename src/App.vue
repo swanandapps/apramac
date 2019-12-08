@@ -2,29 +2,14 @@
   <div id="app" >
 
 
-<v-toolbar id="toolbar" height="105px"  card="false">
 
 
+<el-row style="text-align:center;">
+
+<router-link to="/"><img alt="image" id="apraimg"  src="../src/assets/LOGOforWebsite.jpg"></router-link>
 
 
-  <v-zoom :img="img" :width="width"></v-zoom>
-    <v-toolbar-title id="title"><router-link to="/"><img id="apraimg"  src="https://firebasestorage.googleapis.com/v0/b/aprakrta-48342.appspot.com/o/Aprakrta_Logo_02.png?alt=media&token=8c209221-617f-427e-8ba5-8dd2e32b4e36"></router-link></v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-
-
-
-
-
-
-    </v-toolbar-items>
-
-
-  </v-toolbar>
-
-
-
-
+</el-row>
 
 
 
@@ -42,45 +27,61 @@
 
 import { mapState } from "vuex";
 export default {
-  components: {
-    icon: require("vue-icons"),
-    
-  },
+ 
   computed: mapState(["cartproducts"]),
+
   methods: {
-    hello: function() {
-      alert("hell0");
-    }
-  }
+
+},
+ 
 };
+
+
+
 </script>
 
 
-import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+
 
 <style scoped>
-.line {
-  width: 100%;
-  height: 47px;
-  border-bottom: 0.1px solid rgb(100, 100, 100);
-  margin-top: -2%;
-  -webkit-box-shadow: 0 #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 14px 16px -16px #222;
-}
+@import url('https://fonts.googleapis.com/css?family=Cantarell');
+
 .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active,
 .el-menu-item.is-active {
   color: #0e1316;
 }
-#apraimg {
-  width: 51%;
-  height: 86px;
+a:active, a:focus {
+  outline: 0;
+ 
+  -moz-outline-style: none;
 }
 
 #navhover:hover {
   background-color: #c44b49;
   color: white;
 }
+#snackbar{
+ width: 100%;
+height: 50px;
+}
+
+#snackbar p{
+
+       z-index: 2000;
+    background-color: black;
+    bottom: 17%;
+    /* width: 84%; */
+    width: 100%;
+    color: white;
+    position: fixed;
+    height: 38px;
+    /* text-align: center; */
+    font-size: 88%;
+    padding-top: 2%;
+    padding-left: 3%;
+}
+    
+
 
 a {
   text-decoration: none;
@@ -94,10 +95,16 @@ a {
 }
 
 #app {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Cantarell', sans-serif;
 
   color: #2c3e50;
  
+}
+  #apraimg {
+    width: 15%;
+
+    margin-top: 1%;
+      height: 86px;
 }
 
 .item {
@@ -108,10 +115,10 @@ a {
   background-color: white;
 }
 
-@media screen and (max-width: 480px) {
-  #toolbar {
+@media screen and (max-width: 360px) {
+  #toolbarnew {
     position: fixed;
-    transform: translateY(-20px);
+   
     background-color: white;
     z-index: 2000;
     width: 100%;
@@ -122,11 +129,58 @@ a {
     margin-left: 18%;
   }
   #apraimg {
-    width: 80%;
+    width: 71%;
+    padding-top: 3%;
+    /* padding-left: 4%; */
+    margin-left: 6%;
+    height: 86px;
+
   }
 
   #navhover {
     display: none;
   }
 }
+
+@media screen and (min-width: 361px) and (max-width: 500px) {
+
+    #apraimg {
+    width: 65%;
+
+    margin-top: 2%;
+      height: 86px;
+}
+  
+}
+@media screen and (min-width: 501px) and (max-width: 720px) {
+
+    #apraimg {
+    width: 45%;
+
+    margin-top: 2%;
+      height: 86px;
+}
+  
+}
+
+@media screen and (min-width: 721px) and (max-width: 900px) {
+
+    #apraimg {
+    width: 28%;
+
+    margin-top: 2%;
+}
+  
+}
+
+@media screen and (min-width: 901px) and (max-width:1024px) {
+  
+    #apraimg {
+    width: 28%;
+   
+    margin-top: 2%;
+    /* padding-left: 4%; */
+}
+}
+
 </style>

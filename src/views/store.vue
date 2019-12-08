@@ -1,56 +1,144 @@
+
 <template>
+
 <div>
+
+
 <el-row  id="top-row" >
 
 <el-col  style="width:20%;margin:0%;margin-top:2%;height:20px;text-align: center">
-       <router-link to="/"><v-icon style="color: rgb(167, 62, 44);">home</v-icon></router-link>
+       <router-link to="/"><icon style="color: rgb(167, 62, 44);height:25px;width:60%" name="home"></icon></router-link>
 </el-col>
 <el-col  style="width:50%;margin-left:4%;margin-top:-1%;height:40px;text-align: center">
- <md-menu md-offset-x="-40" md-offset-y="2" md-size="medium" md-align-trigger>
-      <md-button  md-menu-trigger> <v-icon style="color: rgb(167, 62, 44);">category</v-icon></md-button>
-
-      <md-menu-content id="list-content">
-               <md-menu-item @click="seeall" >View All</md-menu-item>
-        <md-menu-item @click="filterbypaint" >Paintings</md-menu-item>
-        <md-menu-item @click="filterbyscul" >Sculpture</md-menu-item>
-        <md-menu-item  @click="filterbydeco" >Home Decor</md-menu-item>
-
-        <md-menu-item   @click="filterbypott" >Pottery</md-menu-item>
-        <md-menu-item   >Aprakrta Services</md-menu-item>
-
-      </md-menu-content>
-    </md-menu>
+ 
+    <icon style="color: rgb(167, 62, 44);padding-top:7%;height:25px;width:60%" @select="handleSelect" name="filter"></icon>
 </el-col>
 <el-col style="width:20%;margin:0%;height:40px;text-align: center;margin-top:-1%">
 
-        <md-menu   md-size="medium" md-align-trigger>
-      <md-button md-menu-trigger> <v-icon style="color: rgb(167, 62, 44);">sort</v-icon></md-button>
+      
+     <icon style="color: rgb(167, 62, 44);padding-top:17%;height:25px;width:60%" @select="handleSelect" name="sort"></icon>
 
-      <md-menu-content id="list-content">
-              <md-menu-item @click="sortrelevance">Relevance</md-menu-item>
-        <md-menu-item @click="sortlowtohigh">Price: Low to High</md-menu-item>
-        <md-menu-item @click="sorthightolow">Price: High to Low</md-menu-item>
-
-      </md-menu-content>
-    </md-menu>
-
+  
 </el-col>
-
 
 <el-col style="width:30%;margin:0%;margin-left:-4%;text-align: center">
 Home
 </el-col>
 <el-col style="width:50%;margin:0%;text-align: center">
-Category
+<el-menu  theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+ 
+  <el-submenu id="mobile-el-menu1"  index="2">
+    <template  slot="title">Category</template>
+    <el-menu-item @click="seeall" index="2-1">View All</el-menu-item>
+    <el-menu-item @click="filterbypaint" index="2-2">Paintings</el-menu-item>
+    <el-menu-item @click="filterbyscul" index="2-3">Sculpture</el-menu-item>
+    <el-menu-item @click="filterbydeco" index="2-4">Home Decor</el-menu-item>
+    <el-menu-item @click="filterbypott" index="2-5">iPottery</el-menu-item>
+  </el-submenu>
+ 
+</el-menu>
 </el-col>
 <el-col style="width:20%;margin:0%;text-align: center">
-Sort
+ <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+ 
+  <el-submenu id="mobile-el-menu2"  index="2">
+    <template style="color:black;font-size:100%" slot="title">Sort</template>
+    <el-menu-item  index="2-1" @click="sortrelevance">Relevance</el-menu-item>
+    <el-menu-item  index="2-2" @click="sortpopular">Most Popular</el-menu-item>
+    <el-menu-item  index="2-3" @click="sort_mostviewed">Most Viewed</el-menu-item>
+    <el-menu-item  index="2-4" @click="sortlowtohigh">Price: Low to High</el-menu-item>
+    <el-menu-item  index="2-5" @click="sorthightolow">Price: High to Low</el-menu-item>
+  </el-submenu>
+ 
+</el-menu>
 </el-col>
 
 
 </el-row>
 
 
+<el-menu   id="el-menu3" class="el-menu-demo" mode="horizontal" >
+
+<div id="menu-tabs">
+<router-link  style="text-decoration:none;color:#a52b2b" to="/"     >:: <word style="color:black"   >Home</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/store"     >:: <word style="color:#a52b2b" >Products</word> ::</router-link>
+
+
+
+<router-link style="text-decoration:none;color:#a52b2b;z-index:2000" to="" > ::  <word @click="showtypes()" style="color:black">Art</word> ::</router-link>
+
+<transition name="fade">
+<div v-if="show_art_types" id="art-types">
+<router-link style="text-decoration:none;color:#a52b2b;background: transparent;z-index:2000" to="/created" ><el-button style="color:#a52b2b"> ::  <word style="color:black;background: transparent;">Created</word> ::</el-button></router-link>
+<router-link style="text-decoration:none;color:#a52b2b;background: transparent;z-index:2000" to="/curated" > <el-button style="color:#a52b2b">::  <word style="color:black;background: transparent;">Curated</word> ::</el-button></router-link></div>
+</transition>
+
+<router-link  style="text-decoration:none;color:#a52b2b" to="/services"     >:: <word style="color:black" >Services</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/events"     >:: <word style="color:black" >Events</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/about"     >:: <word style="color:black" >About</word> ::</router-link>
+<router-link  style="text-decoration:none;color:#a52b2b" to="/contact"     >:: <word style="color:black" >Contact</word> ::</router-link>
+</div>
+ </el-menu>
+
+
+
+
+<el-row id="store-tag-line">
+ 
+<div id="store-tag-line1">
+  
+  <b>Welcome to our online Art Gallery!</b>
+
+</div>
+ 
+<div id="store-tag-line1a">
+  The setup of your space talks a lot about your personality. Be it the space where you work, live, relax or just be!
+</div>
+
+
+</el-row>
+    
+<el-row id="store-tag-line-div" >
+
+<el-row id="store-tag-line2">
+<b>
+Your space is your story!
+
+</b>
+
+
+</el-row>
+
+<el-row id="store-row3" >
+       
+          
+     <p>Jazz up your story,</p> 
+     <p>Set the mood right,</p> 
+     <p>Accentuate your space,</p> 
+     <p>Add Aprakrta’s bespoke art in your life!</p> 
+     <p>Find the right spots for them in your space to create long lasting memories!</p> 
+   
+
+
+
+
+</el-row>
+
+</el-row>
+
+<el-row>
+
+
+  <div id="store-tag-line3">
+Our Art works can easily be your companion at your work cubicle in office, be a conversation starter over your coffee table, accompany you besides your thinking window, smile at you in your kitchen or simply brighten up an empty corner of your house!
+
+<p id="single-gift-line">Gift our Artwork to your friends, relatives and loved one’s and jazz up their stories and spaces!</p>
+
+
+</div>
+</el-row>
+
+        
 
 
 
@@ -59,69 +147,49 @@ Sort
 
 
 
+<el-row id="only-pc-row" >
 
 
+ <el-col style="width:30%"  >
+<el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+ 
+  <el-submenu index="2">
+    <template slot="title">Choose Category</template>
+    <el-menu-item @click="seeall" index="2-1">View All</el-menu-item>
+    <el-menu-item @click="filterbypaint" index="2-2">Paintings</el-menu-item>
+    <el-menu-item @click="filterbyscul" index="2-3">Sculpture</el-menu-item>
+    <el-menu-item @click="filterbydeco" index="2-4">Home Decor</el-menu-item>
+    <el-menu-item @click="filterbypott" index="2-5">iPottery</el-menu-item>
+  </el-submenu>
+ 
+</el-menu>
+     
 
 
- <v-layout id="bggrad" row wrap height="400">
-
-
-         <img onContextMenu="return false;" style="height:350px" src="../assets/home-decor-851x357.jpg" >
-
-
- </v-layout>
-
-
-
-
-
-
-
-
-
-
-<el-row id="only-pc-row" style="margin-top:10%">
-
-
-
-
-          <el-col  style="width:40%;">
- <md-menu md-offset-x="-40" md-offset-y="2" md-size="medium" md-align-trigger>
-      <md-button id="category-btn-pc"   md-menu-trigger> Choose Category</md-button>
-
-      <md-menu-content id="list-content">
-              <md-menu-item @click="seeall" >View All </md-menu-item>
-        <md-menu-item @click="filterbypaint" >Paintings</md-menu-item>
-        <md-menu-item @click="filterbyscul" >Sculpture</md-menu-item>
-        <md-menu-item  @click="filterbydeco" >Home Decor</md-menu-item>
-
-        <md-menu-item   @click="filterbypott" >Pottery</md-menu-item>
-        <md-menu-item   >Aprakrta Services</md-menu-item>
-
-      </md-menu-content>
-    </md-menu>
 </el-col>
 
-<el-col style="width:60%;margin-top:9%">
-    Sort By : <v-btn id="sortbtn1" small @click="sortlowtohigh">Price: Low to High</v-btn>
-   <v-btn id="sortbtn2" small @click="sorthightolow">Price: High to Low</v-btn>
+<el-col id="sort-col" >
+   Sort By :  <el-button aria-label="sort by price low to high" id="sortbtn1" small @click="sortlowtohigh">Price: Low to High</el-button>
+   <el-button aria-label="sort by price high to low" id="sortbtn1" small @click="sorthightolow">Price: High to Low</el-button>
+    <el-button aria-label="sort by relevance" id="sortbtn1" @click="sortrelevance">Relevance</el-button>
+              <el-button aria-label="sort by most popular" id="sortbtn1" @click="sortpopular">Most Popular</el-button>
+               <el-button aria-label="sort by most viewed" id="sortbtn1" @click="sort_mostviewed">Most Viewed</el-button>
 
   </el-col>
 
 </el-row>
 
-
-
-
  <!-- Prod<ucts-->
+
   <el-row  id="products" >
 
-  <el-col class="wow fadeInUp" data-wow-duration="1s"  id="store-col" style="padding:0px" v-for="(user,index) in filter" :key="index" :offset="1" :span="6">
+  <el-col  id="store-col" style="padding:0px" v-for="(user,index) in filter" :key="index" >
 
           <div class="grid-content bg-purple " >
- <router-link to="/details"><img onContextMenu="return false;" id="productimages" @click="showproduct(index)" :src="filter[index].image"></router-link>
-<v-btn   @click="addtocart(index)" id="addtocartbtn">Add to Cart</v-btn>
-<router-link to="/productdetails" style="text-decoration:none" ><v-btn id="viewbtn" @click="showproduct(index)">View product</v-btn></router-link>
+            
+ <img :alt="filter[index].name" onContextMenu="return false;" id="productimages" @click="showproduct(user,index)"  :src="filter[index].image">
+<el-button aria-label="add product to cart"   @click="addtocart(index)" id="addtocartbtn">Add to Cart</el-button>
+<el-button aria-label="view product in detail" id="viewbtn" @click="showproduct(user,index)">View product</el-button>
     </div>
 
            <p  id="productname">{{filter[index].name}}</p>
@@ -134,13 +202,18 @@ Sort
 
 
 <el-row>
+
 <section >
 
 
-<div class="icon-bar">
+<div  class="icon-bar">
          <el-tooltip class="item" effect="dark" content="GO to Cart" placement="right-end">
-<router-link  to="/cart"> <v-icon class="facebook" style="color:white" >shopping_cart</v-icon><div class="count" style="color:white">{{cartproducts.length}}</div></router-link>
+           
+<router-link style="text-decoration:none"  to="/cart"> <img class="facebook " src="../assets/baseline_shopping_cart_white_24dp.png" ><div class="count" style="color:white">{{cartproducts.length}}</div></router-link>
+      
+    
          </el-tooltip>
+         
 
 </div>
 
@@ -149,15 +222,19 @@ Sort
 
 </el-row>
 
-
 </div>
+
 
 </template>
 <script >
-import db from '../components/firebaseinit.js'
-import { storage, functions } from 'firebase';
-import firebase from 'firebase';
+  
+import db from '../components/firebase-firestore.js'
+import Icon from "vue-awesome/components/Icon";
+
+//import { storage, functions } from 'firebase';
+//import firebase from 'firebase';
 import { mapState, mapGetters } from "vuex";
+import { Notification} from 'element-ui'
 export default {
   data() {
     return {
@@ -165,21 +242,49 @@ export default {
       filter: [],
       isDisabled: false,
       dialogVisible: false,
-      count:1
+      count:1,
+      id:'',
+         show_art_types:false
+ 
+     
     };
   },
-
+  components: {
+    Icon
+  },
   computed: {
-    ...mapState(["title", "cartproducts", "clickedproduct"]),
+    ...mapState(["title", "cartproducts", "clickedproduct","color"]),
     ...mapGetters(["indexed"])
   },
+ 
 
-  methods: {
+ methods: {
+  showtypes(){
+
+
+if(this.show_art_types==false){
+
+ this.show_art_types=true
+}
+
+else if(this.show_art_types==true){
+
+  this.show_art_types=false
+}
+   
+  
+},
+
+
     addtocart: function(index) {
+ 
+
+  //console.log(this)
+
       let flag = 1;
       for (let i = 0; i < this.cartproducts.length; i++) {
         if (this.filter[index].id == this.cartproducts[i].id) {
-          this.$notify.warning({
+          Notification.warning({
             title: "Already Added to Cart",
             message: "Visit Cart to Checkout",
             offset: 10,
@@ -192,9 +297,9 @@ export default {
       if (flag == 1) {
         this.cartproducts.push(this.filter[index]);
 
-        console.log(this.cartproducts);
+        //console.log(this.cartproducts);
 
-        this.$notify.success({
+        Notification.success({
           title: "Added to Cart",
           message: "Visit Cart to Checkout",
           offset: 40,
@@ -202,10 +307,26 @@ export default {
         });
       }
     },
-    showproduct(index) {
+    showproduct(product,index) {
       this.clickedproduct.push(this.filter[index]);
       this.clickedproduct.splice(0, this.clickedproduct.length - 1);
-      console.log(this.clickedproduct);
+      this.id=this.clickedproduct[0].id
+
+      this.$router.push('/productdetails/' + this.id)
+
+      //Updating the count
+
+  db.collection("products").doc(product.id).update({
+    clicked_count:product.clicked_count+1
+})
+.then(function() {
+    //console.log("Document successfully written!");
+   
+})
+.catch(function(error) {
+    //console.error("Error writing document: ", error);
+});
+ 
     },
 
     sortrelevance: function() {
@@ -227,25 +348,43 @@ export default {
         })
         .reverse();
     },
+        sortpopular: function() {
+      return this.filter
+        .sort(function(a, b) {
+          return parseFloat(a.sold_count) - parseFloat(b.sold_count);
+        })
+        .reverse();
+    },
+     sort_mostviewed: function() {
+      return this.filter
+        .sort(function(a, b) {
+          return parseFloat(a.clicked_count) - parseFloat(b.clicked_count)
+        })
+        .reverse();
+    },
     seeall: function() {
       this.filter = this.users;
     },
     filterbypaint: function() {
       this.filter = this.users.filter(users => users.type == "paintings");
-      console.log(this.filter);
+      //console.log(this.filter);
+    },
+     filterbyfurniture: function() {
+      this.filter = this.users.filter(users => users.type == "furniture");
+      //console.log(this.filter);
     },
 
     filterbyscul: function() {
       this.filter = this.users.filter(users => users.type == "sculpture");
-      console.log(this.filter);
+      //console.log(this.filter);
     },
     filterbydeco: function() {
       this.filter = this.users.filter(users => users.type == "home decor");
-      console.log(this.filter);
+      //console.log(this.filter);
     },
     filterbypott: function() {
       this.filter = this.users.filter(users => users.type == "pottery");
-      console.log(this.filter);
+      //console.log(this.filter);
     }
   },
   beforeCreate() {
@@ -256,29 +395,206 @@ let tempthis=this
     querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
         
-        console.log(tempthis.count)
+        //console.log(tempthis.count)
         var data = doc.data()
-        console.log(data.id=doc.id)
-         // console.log(tempthis.users[count])
+        data.id=doc.id
+         // //console.log(tempthis.users[count])
            //tempthis.filter[tempthis.count].id=doc.id
-           console.log(data.id)
+           //console.log(data.id)
           tempthis.users.push(data);
         tempthis.filter.push(data);
         tempthis.count++;
 
     });
 
-    console.log(tempthis.users)
-    console.log(tempthis.filter)
-});
+    //console.log(tempthis.users)
+    //console.log(tempthis.filter)
+    tempthis.filter=tempthis.filter.sort(function (a, b) {
+  return a.price - b.price;
+}).reverse();
+
+
+
 
 
    
+  
+  })
   }
 };
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Cantarell');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.el-submenu__title{
+color:black;font-size:100%
+}
+#mobile-el-menu1{
+  float: none;
+  margin-top: -10%
+}
+#mobile-el-menu2{
+  float: none;
+  margin-top: -26%
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s ;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translate3d(-10px,0px,-10px);
+  opacity: 0;
+}
+#store-tag-line2,#store-tag-line1{
+
+
+
+  margin-top: 4%;
+    text-align: center;
+    font-size: 160%;
+    margin-bottom: 2%
+
+}
+
+#store-tag-line1a,#store-row3{
+
+
+   text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    font-size: 129%;
+      font-family: 'Cantarell', sans-serif;
+}
+
+#shopping-cart-icon{
+
+ width: 146%;
+    height: 29px;
+    color: white;
+        margin-left: -27%;
+            margin-top: 22%;
+}
+#store-tag-line3{
+
+   text-align: center;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: 129%;
+    margin-top: 3%
+}
+#menu-tabs a{
+
+ margin-top: 3.5%;
+    margin-left: 6%;
+    font-size: 136%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+#art-types{
+         padding-left: 62%;
+    padding-right: 21%;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 125%;
+    left: -28%;
+    z-index: 200;
+     font-family: inherit
+}
+#art-types :nth-child(2){
+
+ margin-left: 7px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 15px 5px;
+margin-top: 4%;
+ font-family: inherit
+
+}
+#art-types :nth-child(1){
+
+  margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 5px 15px;
+margin-top: -2%;
+ font-family: inherit
+}
+#productname{
+
+
+  font-size: 100%;
+   font-weight: bold
+}
+
+
+
+
+
+#sort-col{
+  width:70%;
+      padding-top: 1%;
+}
+#navhover-exception2 {
+  width: 11%;
+  border: #a52b2b 5px;
+  font-size: 97%;
+  letter-spacing: 0.7px;
+  border: none;
+  color: black;
+  /* padding-right: 7%; */
+  text-align: center;
+  padding: 0px;
+  margin-right: 8%;
+  
+    color: #a52b2b;
+
+}
+.btn-grad:hover {
+  background-position: right center;
+}
+#navhover3 {
+  width: 11%;
+  border: #a52b2b 5px;
+    
+    color: #a52b2b;
+  font-size: 97%;
+  padding: 0px;
+  letter-spacing: 0.7px;
+
+  /* padding-right: 7%; */
+  text-align: center;
+  padding-left: 0px;
+  margin-right: 8%;
+
+}
+#el-menu3 {
+
+     margin-top: 2%;
+    text-align: center;
+    font-size: 90%;
+    box-shadow: 0px;
+    width: 100%;
+    background-color: transparent;
+        border: 0px;
+
+    
+}
+#productimages {
+  margin-top: 9%;
+    width: 75%;
+    height: 360px;
+    cursor: pointer;
+        object-fit: cover;
+}
 a {
   text-decoration: none;
 }
@@ -289,16 +605,25 @@ a {
 
   color: inherit;
   background-color: #f5f5f5;
+  -moz-outline-style: none;
+	outline:none;
+	outline: 0;
 }
-#top-row {
-  display: none;
-}
+
 #home-i {
   margin-top: 15%;
   margin-left: 25%;
 }
 a {
   text-decoration: none;
+}
+#store-col {
+  background-color: white;
+  padding: 0px 0px 0px 0px;
+ 
+  margin-left: 0%;
+  text-align: center;
+  width: 25%;
 }
 .md-menu-content.md-menu-content-medium {
   color: black;
@@ -346,29 +671,30 @@ a {
   color: black;
   font-size: 110%;
   z-index: 2000;
-  margin-top: -105%;
-  margin-left: 80%;
+margin-top: -157%;
+    margin-left: 78%;
+    margin-left: 74%;
+}
+.icon-bar a {
+     display: block;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #a52b2b;
+    font-size: 120%;
+    border-radius: 50%;
+        height: 35px;
+    width: 41%;
 }
 
-.icon-bar a {
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  padding: 16px;
-  transition: all 0.3s ease;
-  color: white;
-  background-color: #a52b2b;
-  font-size: 120%;
-  border-radius: 50%;
-  height: 80px;
-  width: 120%;
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-}
 
 .facebook {
-  color: black;
+ color: black;
   font-size: 200%;
   margin-top: 18%;
+        width: 78%;
+        height: 30px;
 }
 #el-menu2 {
   background-color: white;
@@ -377,6 +703,7 @@ a {
   font-size: 110%;
   box-shadow: 0px;
   width: 100%;
+      border: 0px;
 }
 #navhover-exception {
   width: 11%;
@@ -436,14 +763,197 @@ a {
   margin-left: 0%;
 }
 @media screen and (max-width: 480px) {
+
+
+  #art-types :nth-child(2){
+
+ margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 15px 5px;
+margin-top: 4%;
+ font-family: inherit
+
+}
+#art-types :nth-child(1){
+
+  margin-left: 0px;
+background: rgba(255, 255, 255, 0.6);
+border-radius: 5px 15px;
+margin-top: -2%;
+ font-family: inherit
+
+}
+  #art-types{
+       padding-left: 62%;
+    padding-right: 21%;
+    display: grid;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 20%;
+    left: -32%;
+    z-index: 200;
+     font-family: inherit
+}
+
+  #store-tag-line-div{
+
+        background-position: center;
+    background-image: url("../assets/Productpage2ndimagesquare.jpg");
+    background-size: contain;
+    color: white;
+    height: 375px;
+    font-family: 'Cantarell', sans-serif;
+       margin-top: 6%;
+
+}
+
+#single-gift-line{
+
+  font-style: italic;
+  font-weight: bold;
+      margin-top: 6%;
+}
+#store-tag-line3{
+
+      text-align: center;
+    margin-top: 2%;
+    font-family: 'Cantarell', sans-serif;
+    font-size: 90%;
+    padding-left: 4%;
+    padding-right: 4%;
+    line-height: normal;
+        margin-top: 5%;
+
+}
+#store-row3 p{
+    margin-top: -3%;
+    font-size: 100%;
+    font-weight: 500;
+      font-family: 'Cantarell', sans-serif;
+
+}
+
+#menu-tabs a{
+
+     margin-top: 3.5%;
+    font-size: 94%;
+    margin-left: 2%;
+}
+
+
+
+#menu-tabs{
+    display: grid;
+    text-align-last: center;
+    /* left: 5%; */
+    padding-left: -13%;
+  margin-left: -69%;
+    font-size: 130%;
+    margin-top: -1%;
+
+}
+  #store-tag-line{
+
+    text-align: center;
+    font-size: 120%;
+    color: black;
+    padding-top: 0%;
+  
+    padding-left: 2%;
+    padding-right: 2%;
+  
+    font-family: 'Cantarell', sans-serif;
+        margin-top: 8%;
+}
+ #store-row3 {
+         font-size: 84%;
+    margin-top: 4%;
+    padding-left: 17%;
+    padding-right: 15%;
+    padding-bottom: 1%;
+    text-align: center;
+    font-style: italic;
+      font-family: 'Cantarell', sans-serif;
+  }
+
+
+#store-tag-line-quote{
+       text-align: center;
+    margin-top: 17%;
+    font-family: 'Cantarell', sans-serif;
+    font-style: italic;
+    font-size: 83%;
+    font-weight: 200;
+    letter-spacing: normal;
+     
+}
   #only-pc-row {
     display: none;
   }
+#store-tag-line2{
+
+       text-align: center;
+    margin-top: 7%;
+    font-size: 150%;
+    font-style: italic;
+      font-family: 'Cantarell', sans-serif;
+
+}
+  #store-tag-line1{
+        text-align: center;
+         font-family: 'Cantarell', sans-serif;
+                font-size: 120%;
+  }
+   #store-tag-line1a{
+        text-align: center;
+            margin-top: 2%;
+            font-family: 'Cantarell', sans-serif;
+            font-size: 90%;
+                padding-left: 4%;
+    padding-right: 4%;
+  }
+  #el-menu3 {
+          font-size: 129%;
+    width: 100%;
+    margin-left: 0px;
+        margin-top: 6%;
+        height: 340px;
+ background-image: url("../assets/q-edit2.jpg");
+ background-size: cover
+   
+  }
+  #navhover-exception2 {
+    font-size: 70%;
+   
+        margin-top: 6%;
+ 
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+         padding-left: 4%
+  }
+  #navhover3 {
+    font-size: 70%;
+    
+        margin-top: -9%;
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+        padding-left: 4%
+  }
+
+
   #top-row {
-    top: 91%;
-    margin-left: -1%;
-    width: 102%;
-    display: block;
+   background-color: white;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: block;
+  margin-left: 0%;
+    border: 0px;
   }
   #viewbtn {
     display: none;
@@ -468,22 +978,10 @@ a {
     position: fixed;
     -webkit-transform: translateY(-50%);
     transform: translateY(-56%);
-    right: 18%;
-    bottom: 10%;
+      right: 12%;
+    bottom: 6%;
   }
-  #navhover-exception {
-    font-size: 70%;
-    margin-left: -4%;
-    margin-top: -4%;
-    margin-bottom: 1%;
-    width: 100%;
-  }
-  #navhover2 {
-    font-size: 70%;
-    margin-left: -4%;
-    margin-top: -6%;
-    width: 100%;
-  }
+
   #row2 {
     margin-top: 40%;
     font-size: 110%;
@@ -499,6 +997,7 @@ a {
     display: initial;
     width: 100%;
     margin-left: -2%;
+        border: 0px;
   }
 
   #title {
@@ -507,11 +1006,15 @@ a {
   #bggrad {
     height: 210px;
     margin-top: 15%;
+        width: 100%;
+            object-fit: fill;
   }
-  #productimages[data-v-40dd46b7] {
+  #productimages {
         height: 263px;
     width: 100%;
-    margin-left: 0%
+    margin-left: 0%;
+    cursor: pointer;
+    border: none
   }
 
   #carticon {
@@ -522,15 +1025,21 @@ a {
     margin-top: 5%;
   }
   #store-col {
-    width: 45%;
+         width: 49%;
     height: 400px;
+    margin-left: 1%;
 
-    margin-left: 5%;
+   
   }
   #products {
     width: 100%;
-    margin-top: 50%;
-    margin-left: -1%;
+       
+       display: block;
+       margin-left: 0%;
+           margin-top: 6%;
+           margin-bottom: 25%;
+
+   
   }
   .grid-content {
     height: 296px;
@@ -540,9 +1049,7 @@ a {
   }
 
   #addtocartbtn {
-    margin-top: -2%;
-    left: 19%;
-    width: 100%;
+    display: none
   }
 
   #filter-row {
@@ -560,14 +1067,14 @@ a {
     width: 50%;
     height: 50px;
     font-size: 30%;
-    margin-top: -0.5%;
+   
     opacity: 1;
   }
   #sortbtn2 {
     width: 50%;
     height: 50px;
     font-size: 30%;
-    margin-top: -0.5%;
+   
     opacity: 1;
   }
 }
@@ -579,6 +1086,8 @@ a {
   .line {
     display: none;
   }
+ 
+
   .icon-bar {
     position: fixed;
     -webkit-transform: translateY(-50%);
@@ -602,6 +1111,7 @@ a {
     display: initial;
     width: 100%;
     margin-left: -2%;
+        border: 0px;
   }
   #navhover2 {
     font-size: 90%;
@@ -614,14 +1124,16 @@ a {
   }
   #bggrad {
     height: 210px;
+        object-fit: fill;
   }
   #filters {
     display: -webkit-flex;
     margin-bottom: 8%;
   }
   #productimages {
-    height: 100%;
-    width: 95%;
+       height: 400px;
+    width: 99%;
+      cursor: pointer;
   }
 
   #row2 {
@@ -640,21 +1152,33 @@ a {
     margin-top: -12%;
     margin-left: 15%;
   }
-  #store-col {
-    width: 25%;
-    height: 466px;
+ #store-col {
+         width: 49%;
+    height: 502px;
+    margin-left: 1%;
+
+   
+  }
+  #products {
+    width: 100%;
+      
+       display: block;
+      
+       margin-left: 0%;
+       margin-bottom: 25%;
+
+   
   }
 
   .grid-content {
-    height: 365px;
+    height: 420px;
   }
   img {
     height: 10px;
   }
 
   #addtocartbtn {
-    margin-top: -2%;
-    left: 19%;
+   display: none
   }
   #viewbtn {
     display: none;
@@ -673,14 +1197,14 @@ a {
     width: 30%;
     height: 40px;
     font-size: 50%;
-    margin-top: -0.5%;
+    
     opacity: 1;
   }
   #sortbtn2 {
     width: 30%;
     height: 40px;
     font-size: 50%;
-    margin-top: -0.5%;
+    
     opacity: 1;
   }
 }
@@ -689,6 +1213,22 @@ a {
   .line {
     display: none;
   }
+  #sort-col{
+    width: 100%;
+    padding-left: 5%
+  }
+  .md-menu {
+    margin-left: 15%;
+    margin-top: 1%;
+}
+#menu-tabs a{
+
+     margin-top: 3.5%;
+    font-size: 114%;
+    margin-left: 3%;
+}
+
+
   .icon-bar {
     position: fixed;
     -webkit-transform: translateY(-50%);
@@ -696,38 +1236,78 @@ a {
     right: 18%;
     bottom: 10%;
   }
-  #navhover-exception {
-    font-size: 97%;
-    letter-spacing: 0.7px;
-    border: none;
-    color: black;
-    margin-top: -6%;
+  
+#founder-img{
+
+
+  border-radius: 50%;
+    width: 26%;
+    height: 200px;
+}
+#about-row3{
+
+  margin-top: 15%
+}
+
+ 
+#el-menu3 {
+    font-size: 150%;
+    margin-left: 0%;
+ background-image: url("../assets/u.jpg");
+  background-size: cover
+    
   }
-  #el-menu2 {
-    background-color: white;
-    text-align: center;
-    font-size: 140%;
-    -webkit-box-shadow: 0px;
-    box-shadow: 0px;
-    display: initial;
+
+#menu-tabs{
+  display:grid;text-align-last: center;
+    /* left: 5%; */
+    padding-left: -13%;
+          margin-left: -69%;
+    font-size: 100%;
+        margin-top: -5%;
+}
+  #art-types {
+    padding-left: 62%;
+    padding-right: 21%;
+    /* padding-bottom: 5%; */
+    position: absolute;
+    top: 32%;
+    left: -33%;
+    z-index: 2000;
+     font-family: inherit
+}
+#navhover-exception {
+    font-size: 70%;
+   
+    margin-top: -4%;
+   
     width: 100%;
-    margin-left: -2%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+         padding-left: 4%
   }
   #navhover2 {
-    font-size: 90%;
-    color: black;
-    margin-left: -3%;
-    margin-top: -6%;
+    font-size: 70%;
+    
+       margin-top: -9%;
+    width: 100%;
+    height:70px;
+        padding-right: 69%;
+        color: #a52b2b;
+        padding-left: 4%
   }
   #title {
     width: 30%;
   }
   #bggrad {
     height: 210px;
+        object-fit: fill;
   }
   #productimages {
     height: 100%;
     width: 95%;
+      cursor: pointer;
   }
   #row2 {
     margin-left: 9%;
@@ -747,12 +1327,24 @@ a {
   span {
     margin-top: 1%;
   }
-  #store-col {
-    width: 25%;
-    height: 466px;
+#store-col {
+         width: 33%;
+    height: 470px;
+    
+
+   
   }
   #products {
-    left: 6%;
+    width: 100%;
+     
+       display: block;
+      padding-left:1%;
+      margin-bottom: 25%;
+
+   
+  }
+  #productimages{
+    width: 99%
   }
   .grid-content {
     height: 365px;
@@ -762,8 +1354,7 @@ a {
   }
 
   #addtocartbtn {
-    margin-top: -2%;
-    left: 19%;
+    display: none
   }
   #viewbtn {
     display: none;
@@ -779,30 +1370,35 @@ a {
     width: 100%;
   }
   #sortbtn1 {
-    width: 30%;
+    width: 17%;
     height: 40px;
     font-size: 70%;
-    margin-top: -0.5%;
+    
     opacity: 1;
   }
-  #sortbtn2 {
-    width: 30%;
-    height: 40px;
-    font-size: 70%;
-    margin-top: -0.5%;
-    opacity: 1;
+  
+  #category-btn-pc{
+        width: 117%;
   }
 }
 @media screen and (min-width: 1025px) and (max-width: 1400px) {
 }
-#products {
-  margin-left: -1.5%;
-}
+
 #cartcount {
   color: black;
   display: table-caption;
   height: 50px;
 }
+#sortbtn1{
+    width: 17%;
+    -moz-outline-style: none;
+	outline:none;
+	outline: 0;
+
+}
+
+
+
 #carticon {
   margin-top: -2%;
   margin-left: 30%;
@@ -836,19 +1432,13 @@ a {
   transform: scale(1.1);
   transition: ease-in-out 0.3s;
 }
+
 #el-menu3 {
   background-color: white;
-  box-shadow: 0px;
-  margin-top: -5%;
-
-  text-align: center;
-}
-#el-menu2 {
-  background-color: white;
-  margin-top: 3%;
+  margin-top: 2%;
   margin-bottom: 3%;
   text-align: center;
-  font-size: 140%;
+  font-size: 90%;
   box-shadow: 0px;
   width: 100%;
 }
@@ -881,10 +1471,7 @@ a {
 #home-icon {
   margin-top: -1%;
 }
-#store-col {
-  background-color: white;
-  padding: 0px 0px 0px 0px;
-}
+
 span {
   margin-left: 2%;
 }
@@ -899,25 +1486,12 @@ span {
   width: 90%;
   left: 5%;
 }
-#sortbtn1 {
-  width: 25%;
-  height: 40px;
-  font-size: 80%;
-  margin-top: -0.5%;
-  opacity: 1;
-}
-#sortbtn2 {
-  width: 25%;
-  height: 40px;
-  font-size: 80%;
-  margin-top: -0.5%;
-  opacity: 1;
-}
+
 #prodactions {
   display: inline-block;
 }
 #viewbtn {
-  width: 40%;
+  width: 35%;
   font-size: 70%;
   margin-left: 5%;
   margin-top: -2%;
@@ -925,41 +1499,42 @@ span {
   height: 35px;
   text-align: center;
   background-color: rgb(255, 255, 255);
+  -moz-outline-style: none;
+	outline:none;
+	outline: 0;
 }
 #quick-view-icon {
   z-index: 1000;
   margin-top: -5%;
   margin-left: 10%;
 }
-#productimages {
-  margin-top: 9%;
-  width: 110%;
-  height: 320px;
-}
+
 #addtocartbtn {
-  width: 40%;
+  width: 35%;
   font-size: 70%;
-  margin-left: 5%;
+  
   margin-top: -2%;
   color: rgb(0, 0, 0);
   height: 35px;
   background-color: rgb(255, 255, 255);
+  -moz-outline-style: none;
+	outline:none;
+	outline: 0;
 }
 #productname {
   margin-top: 7%;
   text-align: center;
   font-size: 90%;
+  font-weight: bold
 }
 #productprice {
   text-align: center;
-  margin-top: -2%;
-  font-size: 160%;
-  color: black;
+    margin-top: -2%;
+    font-size: 113%;
+    font-family: auto;
+    color: black;
 }
-.el-col {
-  width: 20%;
-  margin-top: 8%;
-}
+
 .el-dropdown {
   display: inline;
   margin-left: 70%;
@@ -979,6 +1554,9 @@ span {
   margin-left: 28%;
   margin-bottom: 3%;
 }
+
+
+
 
 h1 {
   margin: 10% 35%;
@@ -1004,9 +1582,10 @@ img {
 #bggrad {
   height: 210px;
   margin-top: 4%;
+      object-fit: fill;
 }
 img:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: 0.8s;
 }
 .grid-content:hover #addtocartbtn {
@@ -1031,4 +1610,16 @@ img:hover {
   margin-top: 2%;
   text-align: center;
 }
+#only-pc-row{
+
+  margin-top: 8%;
+  margin-bottom: 5%;
+}
+
+#category-btn-pc[data-v-40dd46b7] {
+    width: 143%;
+ 
+}
+
+
 </style>
